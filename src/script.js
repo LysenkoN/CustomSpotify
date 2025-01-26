@@ -10,9 +10,10 @@ if (!code) {
 } else {
     accessToken = localStorage.getItem('accessToken'); 
     if (!accessToken) {
-        accessToken = await getAccessToken(clientId, code);
-        console.log(accessToken)
-        localStorage.setItem('accessToken', accessToken)
+        let result = await getAccessToken(clientId, code);
+        accessToken = result.access_token;
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', result.refresh_token)
     }
     const profile = await fetchProfile(accessToken);
     populateUI(profile);
@@ -79,8 +80,7 @@ export async function getAccessToken(clientId, code) {
         body: params
     });
 
-    const { access_token } = await result.json();
-    return access_token;
+    return await result.json();
 }
 
 async function fetchProfile(token) {
@@ -126,9 +126,9 @@ export async function refreshToken(clientId) {
     const body = await fetch(url, payload);
     const response = await body.json();
 
-    localStorage.setItem('access_token', response.accessToken);
-    if (response.refreshToken) {
-      localStorage.setItem('refresh_token', response.refreshToken);
+    localStorage.setItem('access_token', response.access_token);
+    if (response.refresh_token) {
+      localStorage.setItem('refresh_token', response.refresh_token);
     }
 }
 
