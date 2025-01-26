@@ -24,7 +24,7 @@ if (!code) {
     const test_album_id = test_releases.albums.items[0].id;
     const test_album = await getAlbum(test_album_id);
     console.log(test_album);
-    const test_track_id = test_album.tracks[0].id;
+    const test_track_id = test_album.tracks.items[0].id;
     
 }
 
@@ -156,3 +156,14 @@ async function getAlbum(albumId) {
     });
     return await result.json();
 }
+
+// async function createPlayList(name, description, public) {
+//     const params = new URLSearchParams();
+//     params.append("client_id", clientId);
+//     params.append("redirect_uri", redirect_uri);
+
+//     const result = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
+//         method: "GET", headers: { Authorization: `Bearer ${accessToken}` }
+//     });
+//     return await result.json();
+// }
