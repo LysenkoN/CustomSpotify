@@ -1,2 +1,2 @@
-# CustomTelegram
-Telegram clone
+# CustomSpotify
+Spotify clone
