@@ -1,31 +1,37 @@
-const clientId = "2730524e59464ae4a386af5d8114892a";
+import { clientId, redirect_uri, site_url, accessTokenVar, refreshTokenVar } from './settings';
+import { getAccessTokenAPI } from './api_access';
+import { getAlbum, getNewReleases } from './api_album';
+import { createPlayList } from './api_playlist';
+import { fetchProfile } from './api_users';
+
 const params = new URLSearchParams(window.location.search);
-const site_url = "http://localhost:8888";
-const redirect_uri = `${site_url}/callback`;
 let code = params.get("code");
 let accessToken = undefined;
 
 if (!code) {
     redirectToAuthCodeFlow(clientId);
 } else {
-    accessToken = localStorage.getItem('accessToken'); 
-    if (!accessToken) {
-        let result = await getAccessToken(clientId, code);
+    accessToken = localStorage.getItem(accessTokenVar); 
+    if (!accessToken || accessToken === 'undefined') {
+        let result = await getAccessTokenAPI(code);
         accessToken = result.access_token;
-        localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('refreshToken', result.refresh_token)
+        localStorage.setItem(accessTokenVar, accessToken);
+        localStorage.setItem(refreshTokenVar, result.refresh_token)
     }
-    const profile = await fetchProfile(accessToken);
+    const profile = await fetchProfile();
+    console.log(profile);
+    localStorage.setItem('profile', JSON.stringify(profile));
     populateUI(profile);
 
     // Test API integrations are below
-    const test_releases = await getNewReleases(clientId, 20, 0);
+    const test_releases = await getNewReleases(20, 0);
     console.log(test_releases);
     const test_album_id = test_releases.albums.items[0].id;
     const test_album = await getAlbum(test_album_id);
     console.log(test_album);
     const test_track_id = test_album.tracks.items[0].id;
-    
+    const new_playlist = await createPlayList('test_playlist', '', true);
+    console.log(new_playlist);
 }
 
 async function redirectToAuthCodeFlow(clientId) {
@@ -38,7 +44,7 @@ async function redirectToAuthCodeFlow(clientId) {
     params.append("client_id", clientId);
     params.append("response_type", "code");
     params.append("redirect_uri", redirect_uri);
-    params.append("scope", "user-read-private user-read-email");
+    params.append("scope", 'playlist-modify-public user-read-private user-read-email');
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
 
@@ -64,33 +70,6 @@ async function generateCodeChallenge(codeVerifier) {
         .replace(/=+$/, '');
 }
 
-export async function getAccessToken(clientId, code) {
-    const verifier = localStorage.getItem("verifier");
-
-    const params = new URLSearchParams();
-    params.append("client_id", clientId);
-    params.append("grant_type", "authorization_code");
-    params.append("code", code);
-    params.append("redirect_uri", redirect_uri);
-    params.append("code_verifier", verifier);
-
-    const result = await fetch("https://accounts.spotify.com/api/token", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: params
-    });
-
-    return await result.json();
-}
-
-async function fetchProfile(token) {
-    const result = await fetch("https://api.spotify.com/v1/me", {
-        method: "GET", headers: { Authorization: `Bearer ${token}` }
-    });
-
-    return await result.json();
-}
-
 function populateUI(profile) {
     document.getElementById("displayName").innerText = profile.display_name;
     if (profile.images[0]) {
@@ -106,64 +85,3 @@ function populateUI(profile) {
     document.getElementById("url").innerText = profile.href;
     document.getElementById("url").setAttribute("href", profile.href);
 }
-
-
-export async function refreshToken(clientId) {
-    const refreshToken = localStorage.getItem('refresh_token');
-    const url = "https://accounts.spotify.com/api/token";
-
-    const payload = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: new URLSearchParams({
-        grant_type: 'refresh_token',
-        refresh_token: refreshToken,
-        client_id: clientId
-      }),
-    }
-    const body = await fetch(url, payload);
-    const response = await body.json();
-
-    localStorage.setItem('access_token', response.access_token);
-    if (response.refresh_token) {
-      localStorage.setItem('refresh_token', response.refresh_token);
-    }
-}
-
-
-// Test API integrations are below
-
-async function getNewReleases(clientId, limit, offset) {
-    const params = new URLSearchParams();
-    params.append("client_id", clientId);
-    params.append("redirect_uri", redirect_uri);
-
-    const result = await fetch(`https://api.spotify.com/v1/browse/new-releases?limit=${limit}&offset=${offset}`, {
-        method: "GET", headers: { Authorization: `Bearer ${accessToken}` }
-    });
-    return await result.json();
-}
-
-async function getAlbum(albumId) {
-    const params = new URLSearchParams();
-    params.append("client_id", clientId);
-    params.append("redirect_uri", redirect_uri);
-
-    const result = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
-        method: "GET", headers: { Authorization: `Bearer ${accessToken}` }
-    });
-    return await result.json();
-}
-
-// async function createPlayList(name, description, public) {
-//     const params = new URLSearchParams();
-//     params.append("client_id", clientId);
-//     params.append("redirect_uri", redirect_uri);
-
-//     const result = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
-//         method: "GET", headers: { Authorization: `Bearer ${accessToken}` }
-//     });
-//     return await result.json();
-// }
