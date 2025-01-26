@@ -1,4 +1,4 @@
-import { clientId, redirect_uri, site_url, accessTokenVar, refreshTokenVar } from './settings';
+import { clientId, redirect_uri, scopes, accessTokenVar, refreshTokenVar } from './settings';
 import { getAccessTokenAPI } from './api_access';
 import { getAlbum, getNewReleases } from './api_album';
 import { createPlayList } from './api_playlist';
@@ -44,7 +44,7 @@ async function redirectToAuthCodeFlow(clientId) {
     params.append("client_id", clientId);
     params.append("response_type", "code");
     params.append("redirect_uri", redirect_uri);
-    params.append("scope", 'playlist-modify-public user-read-private user-read-email');
+    params.append("scope", scopes);
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
 
