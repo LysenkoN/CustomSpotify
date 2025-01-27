@@ -24,14 +24,14 @@ if (!code) {
     populateUI(profile);
 
     // Test API integrations are below
-    const test_releases = await getNewReleases(20, 0);
-    console.log(test_releases);
-    const test_album_id = test_releases.albums.items[0].id;
-    const test_album = await getAlbum(test_album_id);
-    console.log(test_album);
-    const test_track_id = test_album.tracks.items[0].id;
-    const new_playlist = await createPlayList('test_playlist', '', true);
-    console.log(new_playlist);
+    // const test_releases = await getNewReleases(20, 0);
+    // console.log(test_releases);
+    // const test_album_id = test_releases.albums.items[0].id;
+    // const test_album = await getAlbum(test_album_id);
+    // console.log(test_album);
+    // const test_track_id = test_album.tracks.items[0].id;
+    // const new_playlist = await createPlayList('test_playlist', '', true);
+    // console.log(new_playlist);
 }
 
 async function redirectToAuthCodeFlow(clientId) {
