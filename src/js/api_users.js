@@ -10,6 +10,6 @@ export async function fetchProfile() {
         return result.json();
     } else if (result.status === 401) {
         await refreshToken();
-        return await fetchProfile(token);
+        return await fetchProfile();
     }
 }
