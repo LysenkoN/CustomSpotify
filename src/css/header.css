@@ -2,9 +2,26 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #000;
+    background-color: var(--color-black);
 }
 .header-logo img{
     width: 35px;
     height: 35px;
+}
+.header-search{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.header-search-btn-home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    background-color: #1f1f1f;
+}
+.header-search-btn-home:hover{
+    
 }
