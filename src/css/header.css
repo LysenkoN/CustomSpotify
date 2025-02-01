@@ -29,10 +29,19 @@
 .header-search-btn-home:hover{
     transform: scale(1.05);
 }
+.svg-search{
+    fill: var(--color-white);
+    width: 27px;
+    height: 27px;
+}
 .header-search-input{
     height: 48px;
-    border-radius: 30px;
+    width: 430px;
+    border-radius: 500px;
+    font-size: 1rem;
     background-color: #1f1f1f;
+    color: var(--color-white);
+    cursor: text;
     outline: 0;
     border: 0;
     transition: 100ms;
