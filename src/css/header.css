@@ -1,5 +1,4 @@
 .header{
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -14,11 +13,12 @@
     cursor: pointer;
 }
 .header-search{
+    position: relative;
     display: flex;
     align-items: center;
     gap: 8px;
 }
-.header-search-btn-home{
+.header-search-btn-home, .header-profile-avatar{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,14 +26,18 @@
     width: 48px;
     height: 48px;
     background-color: #1f1f1f;
+    cursor: pointer;
 }
 .header-search-btn-home:hover{
     transform: scale(1.05);
 }
+.header-profile-avatar:hover{
+    transform: scale(1.05);
+}
 .svg-search{
     position: absolute;
-    left: 40.5%;
-    top: 20px;
+    left: 70px;
+    top: 11px;
     fill: #878787;
     width: 27px;
     height: 27px;
@@ -49,8 +53,8 @@
     cursor: text;
     outline: 0;
     border: 0;
-    transition: 100ms;
-    padding-left: 55px;
+    transition: 300ms;
+    padding-left: 50px;
 }
 .header-search-input:hover{
     outline: 1px solid #505050;
@@ -61,4 +65,11 @@
 }
 .header-search-input:focus{
     outline: 2px solid var(--color-white);
+}
+
+.header-profile{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 3px;
 }
