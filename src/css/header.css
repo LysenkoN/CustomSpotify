@@ -1,4 +1,5 @@
 .header{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -30,9 +31,13 @@
     transform: scale(1.05);
 }
 .svg-search{
-    fill: var(--color-white);
+    position: absolute;
+    left: 40.5%;
+    top: 20px;
+    fill: #878787;
     width: 27px;
     height: 27px;
+    cursor: pointer;
 }
 .header-search-input{
     height: 48px;
@@ -45,10 +50,14 @@
     outline: 0;
     border: 0;
     transition: 100ms;
+    padding-left: 55px;
 }
 .header-search-input:hover{
     outline: 1px solid #505050;
     background-color: #343434;
+}
+.header-search-input:hover.svg-search{
+    fill: var(--color-white);
 }
 .header-search-input:focus{
     outline: 2px solid var(--color-white);
