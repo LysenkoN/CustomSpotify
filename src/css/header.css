@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--color-black);
+    background-color: var(--background-press);
     padding: 9px 2px;
 }
 .header-logo img{
@@ -25,7 +25,7 @@
     border-radius: 50%;
     width: 48px;
     height: 48px;
-    background-color: #1f1f1f;
+    background-color: var(--background-highlight);
     cursor: pointer;
 }
 .header-search-btn-home:hover{
@@ -38,7 +38,7 @@
     position: absolute;
     left: 70px;
     top: 11px;
-    fill: #878787;
+    fill: var(--text-subdued);
     width: 27px;
     height: 27px;
     cursor: pointer;
@@ -48,7 +48,7 @@
     width: 430px;
     border-radius: 500px;
     font-size: 1rem;
-    background-color: #1f1f1f;
+    background-color: var(--background-highlight);
     color: var(--color-white);
     cursor: text;
     outline: 0;
@@ -57,8 +57,8 @@
     padding-left: 50px;
 }
 .header-search-input:hover{
-    outline: 1px solid #505050;
-    background-color: #343434;
+    outline: 1px solid var(--essential-subdued);
+    background-color: var(--background-elevated-highlight);
 }
 .header-search-input:hover.svg-search{
     fill: var(--color-white);
@@ -72,4 +72,23 @@
     align-items: center;
     gap: 5px;
     margin-right: 3px;
+}
+.header-profile-avatar-img{
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+}
+.help{
+    position: absolute;
+    top: 67px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: var(--background-elevated-highlight);
+    color: var(--text-base);
+    padding: 0 10px;
+    height: 26px;
+    border-radius: 2px;
+    box-shadow: 0 0 6px 0 #000;
 }
