@@ -79,3 +79,16 @@
     height: 32px;
     object-fit: cover;
 }
+.help{
+    position: absolute;
+    top: 67px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: #2a2a2a;
+    color: #fff;
+    padding: 0 10px;
+    height: 26px;
+    border-radius: 2px;
+    box-shadow: 0 0 6px 0 #000;
+}
