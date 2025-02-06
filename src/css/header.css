@@ -1,0 +1,94 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--background-press);
+    padding: 9px 2px;
+}
+.header-logo img{
+    position: relative;
+    left: 25px;
+    width: 33px;
+    height: 33px;
+    cursor: pointer;
+}
+.header-search{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.header-search-btn-home, .header-profile-avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    background-color: var(--background-highlight);
+    cursor: pointer;
+}
+.header-search-btn-home:hover{
+    transform: scale(1.05);
+}
+.header-profile-avatar:hover{
+    transform: scale(1.05);
+}
+.svg-search{
+    position: absolute;
+    left: 70px;
+    top: 11px;
+    fill: var(--text-subdued);
+    width: 27px;
+    height: 27px;
+    cursor: pointer;
+}
+.header-search-input{
+    height: 48px;
+    width: 430px;
+    border-radius: 500px;
+    font-size: 1rem;
+    background-color: var(--background-highlight);
+    color: var(--color-white);
+    cursor: text;
+    outline: 0;
+    border: 0;
+    transition: 300ms;
+    padding-left: 50px;
+}
+.header-search-input:hover{
+    outline: 1px solid var(--essential-subdued);
+    background-color: var(--background-elevated-highlight);
+}
+.header-search-input:hover.svg-search{
+    fill: var(--color-white);
+}
+.header-search-input:focus{
+    outline: 2px solid var(--color-white);
+}
+
+.header-profile{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 3px;
+}
+.header-profile-avatar-img{
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+}
+.help{
+    position: absolute;
+    top: 67px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: var(--background-elevated-highlight);
+    color: var(--text-base);
+    padding: 0 10px;
+    height: 26px;
+    border-radius: 2px;
+    box-shadow: 0 0 6px 0 #000;
+}
