@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--background-press);
     padding: 9px 2px;
+    padding-right: 10px;
 }
 .header-logo img{
     position: relative;

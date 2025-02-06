@@ -36,4 +36,5 @@ body{
     user-select: none; 
 
     font-family: Roboto;
+    background-color: var(--background-press);
 }
