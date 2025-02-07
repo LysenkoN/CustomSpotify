@@ -79,7 +79,7 @@
     height: 32px;
     object-fit: cover;
 }
-.help{
+.help-home, .help-profile{
     position: absolute;
     top: 67px;
     display: none;
