@@ -5,12 +5,13 @@
         <link rel="shortcut icon" href="./src/img/Spotify_Primary_Logo_RGB_Green.png">
         <title>My Spotify Profile</title>
         <link rel="stylesheet" href="./src/css/app.css">
+        <link rel="stylesheet" href="./src/css/left_panel.css">
         <script src="./src/js/script.js" type="module"></script>
     </head>
     <body>
-      <h1>Display your Spotify profile data</h1>
+      <!-- <h1>Display your Spotify profile data</h1> -->
 
-      <section id="profile">
+      <!-- <section id="profile">
       <h2>Logged in as <span id="displayName"></span></h2>
       <span id="avatar"></span>
       <ul>
@@ -20,7 +21,7 @@
           <li>Link: <a id="url" href="#"></a></li>
           <li>Profile Image: <span id="imgUrl"></span></li>
       </ul>
-      </section>
+      </section> -->
 
 
       <header>
@@ -28,9 +29,40 @@
       </header>
       
       <section class="center-elemnts">
+        <div class="main_left_panel_block">
+          <div class="header_left_panel">
+            <div class="my_mediateka">
+              <!-- <img src="./src/img/left_block/left_header_icon.svg" alt=""> -->
+               <div  class="left_header_icon"></div> 
+              <span>Моя медиатека</span>
+            </div>
+            <div class="plus_arrow_block">
+              <img src="./src/img/left_block/plus.svg" alt="">
+              <img src="./src/img/left_block/arrow.svg" alt="">
+            </div>
+            
+          </div>
+          <div class="playlist">
+              <div  class="text_playlist">Плейлисты</div>
+          </div>
+          <div class="search_listenedto">
+            <div class="zoom">
+              <img src="./src/img/left_block/zoom.svg" alt="">
+            </div>
+            <div class="listenedto">
+              <span>Недавно прослушаны</span>
+              <img src="./src/img/left_block/burger_menu.svg" alt="">
+            </div>
+          </div>
+          <div class="playlist_list">
+            <div class="icon"></div>
+            <div class="name_playlist"></div>
+          </div>
+        </div>
         <main class="block-sing">
 
         </main>
+
       </section>
     </body>
 </html>
