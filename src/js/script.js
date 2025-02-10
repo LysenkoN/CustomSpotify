@@ -77,7 +77,7 @@ function populateUI(profile) {
         const profileImage = new Image(200, 200);
         profileImage.src = profile.images[0].url;
         document.getElementById("avatar").appendChild(profileImage);
-        document.getElementById("imgUrl").src = profile.images[0].url;
+        document.getElementById("imgUrl").innerText = profile.images[0].url;
     }
     document.getElementById("id").innerText = profile.id;
     document.getElementById("email").innerText = profile.email;

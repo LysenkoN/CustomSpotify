@@ -14,14 +14,14 @@
          <!-- <h1>Display your Spotify profile data</h1>  -->
 
         <section style="display: none;" id="profile"> 
-       <h2 >Logged in as <span></span></h2>
+       <h2 >Logged in as <span id="displayName"></span></h2>
           <span id="avatar"></span>
          <ul>
           <li>User ID: <span id="id"></span></li>
           <li>Email: <span id="email"></span></li>
           <li>Spotify URI: <a id="uri" href="#"></a></li>
           <li>Link: <a id="url" href="#"></a></li>
-          <li>Profile Image: <span></span></li>
+          <li>Profile Image: <span id="imgUrl"></span></li>
       </ul>
       </section>     
 
@@ -43,9 +43,9 @@
         <div class="header-profile">
             <div class="header-profile-install"></div>
             <a class="header-profile-avatar">
-                <img class="header-profile-avatar-img" id="imgUrl" src="" alt="avatar">
+                <img class="header-profile-avatar-img" src="" alt="avatar">
             </a>
-            <div id="displayName" class="help-profile"></div>
+            <div class="help-profile"></div>
         </div>
       </header>
       

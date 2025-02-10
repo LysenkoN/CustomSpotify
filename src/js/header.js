@@ -31,3 +31,8 @@ logo.addEventListener("mouseout",()=>{unvisible(itemHelpLogo)});
 
 search.addEventListener("mouseover",()=>{visible(itemHelpSearch)});
 search.addEventListener("mouseout",()=>{unvisible(itemHelpSearch)});
+
+
+const profile = JSON.parse(localStorage.getItem('profile'));
+document.querySelector(".header-profile-avatar-img").src = profile.images[0].url;
+document.querySelector(".help-profile").textContent = profile.display_name;
