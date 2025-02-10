@@ -45,7 +45,6 @@
 }
 .header-search-input{
     height: 48px;
-    width: 430px;
     border-radius: 500px;
     font-size: 1rem;
     background-color: var(--background-highlight);
@@ -55,6 +54,7 @@
     border: 0;
     transition: 300ms;
     padding-left: 50px;
+    padding-right: 230px;
 }
 .header-search-input:hover{
     outline: 1px solid var(--essential-subdued);
