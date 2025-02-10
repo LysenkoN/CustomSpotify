@@ -3,6 +3,7 @@ import { getAccessTokenAPI } from './api_access';
 import { getAlbum, getNewReleases } from './api_album';
 import { createPlayList } from './api_playlist';
 import { fetchProfile } from './api_users';
+import "./header.js";
 
 const params = new URLSearchParams(window.location.search);
 let code = params.get("code");
@@ -76,7 +77,7 @@ function populateUI(profile) {
         const profileImage = new Image(200, 200);
         profileImage.src = profile.images[0].url;
         document.getElementById("avatar").appendChild(profileImage);
-        document.getElementById("imgUrl").src = profile.images[0].url;
+        document.getElementById("imgUrl").innerText = profile.images[0].url;
     }
     document.getElementById("id").innerText = profile.id;
     document.getElementById("email").innerText = profile.email;

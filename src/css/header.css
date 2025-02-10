@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--background-press);
     padding: 9px 2px;
+    padding-right: 10px;
 }
 .header-logo img{
     position: relative;
@@ -49,7 +49,7 @@
     border-radius: 500px;
     font-size: 1rem;
     background-color: var(--background-highlight);
-    color: var(--color-white);
+    color: var(--text-base);
     cursor: text;
     outline: 0;
     border: 0;
@@ -61,10 +61,10 @@
     background-color: var(--background-elevated-highlight);
 }
 .header-search-input:hover.svg-search{
-    fill: var(--color-white);
+    fill: var(--text-base);
 }
 .header-search-input:focus{
-    outline: 2px solid var(--color-white);
+    outline: 2px solid var(--text-base);
 }
 
 .header-profile{
@@ -79,7 +79,7 @@
     height: 32px;
     object-fit: cover;
 }
-.help{
+.help-home, .help-profile, .help-header-logo-img, .help-svg-search{
     position: absolute;
     top: 67px;
     display: none;
