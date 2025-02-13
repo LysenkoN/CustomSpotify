@@ -1,6 +1,6 @@
 
 // Подсказки при навереднии на елемент
-const profileAvatar = document.querySelector(".header-profile-avatar");
+export const profileAvatar = document.querySelector(".header-profile-avatar");
 const homeBtn = document.querySelector(".header-search-btn-home");
 const itemHelpHome = document.querySelector(".help-home");
 const itemHelpProfile = document.querySelector(".help-profile");
