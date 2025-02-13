@@ -1,4 +1,6 @@
  @import "./header.css";
  @import "./global.css";
  @import './main.css';
- @import './player.css'
+ @import './player.css';
+ @import './adaptiveHeader.css';
+ 
