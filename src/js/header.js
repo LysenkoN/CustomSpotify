@@ -39,10 +39,9 @@ let colorRandomIndex = Math.floor(Math.random()*colorsAvatar.length);
 
 
 // Записываем данные user
+export const profile = JSON.parse(localStorage.getItem('profile'));
 function userInformation(){
-    const profile = JSON.parse(localStorage.getItem('profile'));
-
-
+    
     if(profile.images.length !== 0){ //Делаем проверку на наличие аватарки
         document.querySelector(".header-profile-avatar-img").src = profile.images[0].url; // Выводим ее в отведенное место
      }else{
