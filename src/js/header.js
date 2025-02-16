@@ -56,3 +56,11 @@ function userInformation(){
     document.querySelector(".help-profile").textContent = profile.display_name; //Записываем имя user в подсказку
 }
 userInformation();
+
+//Делаем по нажатию на кнопку home открытие главной странице
+function pageHome(){
+    document.querySelector(".secti-el").innerHTML =
+    console.log(document.querySelector(".secti-el").childNodes);
+
+}
+homeBtn.addEventListener("click", ()=>{pageHome()});

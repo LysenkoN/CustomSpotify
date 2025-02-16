@@ -1,5 +1,6 @@
 import {profileAvatar, profile} from "./header.js"
 
+//Заменяем елементы на страницу профиля
 function pageProfile(userName, userAvatar){
     document.querySelector(".secti-el").innerHTML = `
         <div class="profile-header">
@@ -16,4 +17,6 @@ function pageProfile(userName, userAvatar){
 `;
 }
 
-profileAvatar.addEventListener("click",pageProfile(profile.display_name, profile.images[0].url));
+profileAvatar.addEventListener("click" ,()=>{
+    pageProfile(profile.display_name, profile.images[0].url);
+});

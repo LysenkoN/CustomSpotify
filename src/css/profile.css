@@ -1,10 +1,6 @@
-.profile{
-    border-radius: 10px;
-    width: 150vh;
-    height: 85vh;
-    background-color: rgb(41, 40, 40);
-}
 .profile-header{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     display: flex;
     height: 35%;
     background: linear-gradient(to bottom, #8b0000, #3b0000);
