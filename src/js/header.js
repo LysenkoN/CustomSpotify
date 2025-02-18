@@ -1,7 +1,7 @@
 
 // Подсказки при навереднии на елемент
 export const profileAvatar = document.querySelector(".header-profile-avatar");
-const homeBtn = document.querySelector(".header-search-btn-home");
+export const homeBtn = document.querySelector(".header-search-btn-home");
 const itemHelpHome = document.querySelector(".help-home");
 const itemHelpProfile = document.querySelector(".help-profile");
 const logo = document.querySelector(".header-logo-img");
@@ -51,7 +51,7 @@ function userInformation(){
         avatar.classList.add("header-profile-avatar-img");
         avatar.textContent = profile.display_name[0];
         avatar.style.backgroundColor = colorsAvatar[colorRandomIndex];
-        document.querySelector(".header-profile-avatar").append(avatar);
+        profileAvatar.append(avatar);
     }
     document.querySelector(".help-profile").textContent = profile.display_name; //Записываем имя user в подсказку
 }

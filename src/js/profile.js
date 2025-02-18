@@ -1,4 +1,5 @@
-import {profileAvatar, profile} from "./header.js"
+import {profileAvatar, profile} from "./header.js";
+import {homeStroke} from "./buttonHome.js";
 
 // Функция для альтернативы аватарки
 function avatarProfile(){
@@ -40,4 +41,5 @@ avatarProfile();
 
 profileAvatar.addEventListener("click" ,()=>{
     pageProfile(profile.display_name,);
+    homeStroke();
 });
