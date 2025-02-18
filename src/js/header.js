@@ -58,9 +58,9 @@ function userInformation(){
 userInformation();
 
 //Делаем по нажатию на кнопку home открытие главной странице
-function pageHome(){
-    document.querySelector(".secti-el").innerHTML =
-    console.log(document.querySelector(".secti-el").childNodes);
+// function pageHome(){
+//     document.querySelector(".secti-el").innerHTML =
+//     console.log(document.querySelector(".secti-el").childNodes);
 
-}
-homeBtn.addEventListener("click", ()=>{pageHome()});
+// }
+// homeBtn.addEventListener("click", ()=>{pageHome()});
