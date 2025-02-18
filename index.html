@@ -8,7 +8,9 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <script type="module" src="./src/js/script.js"></script>
+        <script src="./src/js/script.js" type="module"></script>
+        <script defer src="./src/js/header.js"></script>
+        <script defer src="./src/js/left_panel.js"></script>
     </head>
     <body>
          <!-- <h1>Display your Spotify profile data</h1>  -->
@@ -56,9 +58,60 @@
             </a>
             <div class="help-profile"></div>
         </div>
-    </header>
-
-    <section class="center-elemnts">
+      </header>
+      
+      <section class="center-elemnts">
+        <div class="main_left_panel_block">
+          <div class="header_left_panel">
+            <div class="my_mediateka svg-container">
+              <svg data-encore-id="icon" role="img" aria-hidden="true" fill = "grey" class="Svg-sc-ytk21e-0 bneLcE e-9541-icon" viewBox="0 0 24 24"><path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"></path></svg>
+              <span>Моя медиатека</span>
+            </div>
+            <div  class="plus_arrow_block svg-container">
+              <div id="media_add" class="svg">
+                <svg data-encore-id="icon" role="img" aria-hidden="true" class="Svg-sc-ytk21e-0 dYnaPI e-9541-icon" viewBox="0 0 16 16"><path d="M15.25 8a.75.75 0 0 1-.75.75H8.75v5.75a.75.75 0 0 1-1.5 0V8.75H1.5a.75.75 0 0 1 0-1.5h5.75V1.5a.75.75 0 0 1 1.5 0v5.75h5.75a.75.75 0 0 1 .75.75z"></path></svg>
+              </div>
+              <div class="media-add-block">
+                <div class="media-add-contanier">
+                <svg data-encore-id="icon" role="img" aria-hidden="true" class="Svg-sc-ytk21e-0 dYnaPI e-9541-icon" viewBox="0 0 16 16"><path d="M2 0v2H0v1.5h2v2h1.5v-2h2V2h-2V0H2zm11.5 2.5H8.244A5.482 5.482 0 0 0 7.966 1H15v11.75A2.75 2.75 0 1 1 12.25 10h1.25V2.5zm0 9h-1.25a1.25 1.25 0 1 0 1.25 1.25V11.5zM4 8.107a5.465 5.465 0 0 0 1.5-.593v5.236A2.75 2.75 0 1 1 2.75 10H4V8.107zM4 11.5H2.75A1.25 1.25 0 1 0 4 12.75V11.5z"></path></svg>
+                <span>Создать плейлист</span>
+              </div>
+              </div>
+              <div class="svg"><svg data-encore-id="icon" role="img" aria-hidden="true" fill="grey" class="Svg-sc-ytk21e-0 cAMMLk e-9541-icon" viewBox="0 0 16 16"><path d="M7.19 1A.749.749 0 0 1 8.47.47L16 7.99l-7.53 7.521a.75.75 0 0 1-1.234-.815.75.75 0 0 1 .174-.243l5.72-5.714H.75a.75.75 0 1 1 0-1.498h12.38L7.41 1.529a.749.749 0 0 1-.22-.53z"></path></svg>
+              </div>
+          </div>
+            
+          </div>
+          <div class="playlist_artists_contanier">
+          <div class="playlist">
+              <span class="text_playlist">Плейлисты</span>
+          </div>
+          <div class="playlist artists">
+            <span class="text_playlist">Исполнители</span>
+          </div>
+        </div>
+          <div class="search_listenedto">
+              <div class="zoom svg-container">
+                <div id="mediateka_search" class="svg"><svg data-encore-id="icon" role="img" aria-hidden="true" class="Svg-sc-ytk21e-0 dYnaPI e-9541-icon CIVozJ8XNPJ60uMN23Yg" viewBox="0 0 16 16"><path d="M7 1.75a5.25 5.25 0 1 0 0 10.5 5.25 5.25 0 0 0 0-10.5zM.25 7a6.75 6.75 0 1 1 12.096 4.12l3.184 3.185a.75.75 0 1 1-1.06 1.06L11.304 12.2A6.75 6.75 0 0 1 .25 7z"></path></svg>
+              </div>
+              <div id="mediateka-input-container">
+                <input id="mediateka_input" placeholder="Искать в медиатеке">
+              </div>
+          </div>
+       
+            <div class="listenedto svg-container">
+              <span>Недавно прослушаны</span>
+              <svg data-encore-id="icon" role="img" aria-hidden="true" fill="grey" class="Svg-sc-ytk21e-0 cAMMLk e-9541-icon" viewBox="0 0 16 16"><path d="M15 14.5H5V13h10v1.5zm0-5.75H5v-1.5h10v1.5zM15 3H5V1.5h10V3zM3 3H1V1.5h2V3zm0 11.5H1V13h2v1.5zm0-5.75H1v-1.5h2v1.5z"></path></svg>
+            </div>
+          </div>
+          <div class="playlist_list">
+            <div class="icon"></div>
+            <div class="playlist_contanier">
+                <div class="name_artist">Имя исполнителя</div>
+                <div class="role_artist">Исполнитель</div> 
+            </div>
+          </div>
+        </div>
         <main class="block-sing">
             <section class="secti-el">
                 <div class="high-div">
