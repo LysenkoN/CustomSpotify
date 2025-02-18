@@ -37,4 +37,6 @@ body{
 
     font-family: Roboto;
     background-color: var(--background-press);
+
+    overflow: hidden;
 }

@@ -1,6 +1,6 @@
 
 // Подсказки при навереднии на елемент
-const profileAvatar = document.querySelector(".header-profile-avatar");
+export const profileAvatar = document.querySelector(".header-profile-avatar");
 const homeBtn = document.querySelector(".header-search-btn-home");
 const itemHelpHome = document.querySelector(".help-home");
 const itemHelpProfile = document.querySelector(".help-profile");
@@ -39,10 +39,9 @@ let colorRandomIndex = Math.floor(Math.random()*colorsAvatar.length);
 
 
 // Записываем данные user
+export const profile = JSON.parse(localStorage.getItem('profile'));
 function userInformation(){
-    const profile = JSON.parse(localStorage.getItem('profile'));
-
-
+    
     if(profile.images.length !== 0){ //Делаем проверку на наличие аватарки
         document.querySelector(".header-profile-avatar-img").src = profile.images[0].url; // Выводим ее в отведенное место
      }else{
@@ -57,3 +56,11 @@ function userInformation(){
     document.querySelector(".help-profile").textContent = profile.display_name; //Записываем имя user в подсказку
 }
 userInformation();
+
+//Делаем по нажатию на кнопку home открытие главной странице
+// function pageHome(){
+//     document.querySelector(".secti-el").innerHTML =
+//     console.log(document.querySelector(".secti-el").childNodes);
+
+// }
+// homeBtn.addEventListener("click", ()=>{pageHome()});
