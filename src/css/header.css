@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--background-press);
     padding: 9px 2px;
+    padding-right: 10px;
 }
 .header-logo img{
     position: relative;
@@ -45,26 +45,26 @@
 }
 .header-search-input{
     height: 48px;
-    width: 430px;
     border-radius: 500px;
     font-size: 1rem;
     background-color: var(--background-highlight);
-    color: var(--color-white);
+    color: var(--text-base);
     cursor: text;
     outline: 0;
     border: 0;
     transition: 300ms;
     padding-left: 50px;
+    padding-right: 230px;
 }
 .header-search-input:hover{
     outline: 1px solid var(--essential-subdued);
     background-color: var(--background-elevated-highlight);
 }
 .header-search-input:hover.svg-search{
-    fill: var(--color-white);
+    fill: var(--text-base);
 }
 .header-search-input:focus{
-    outline: 2px solid var(--color-white);
+    outline: 2px solid var(--text-base);
 }
 
 .header-profile{
@@ -74,12 +74,17 @@
     margin-right: 3px;
 }
 .header-profile-avatar-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     width: 32px;
     height: 32px;
     object-fit: cover;
+    color: var(--background-press);
+    font-weight: 600;
 }
-.help{
+.help-home, .help-profile, .help-header-logo-img, .help-svg-search{
     position: absolute;
     top: 67px;
     display: none;
