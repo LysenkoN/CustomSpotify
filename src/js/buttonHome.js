@@ -1,12 +1,12 @@
-import { homeBtn } from "./header.js";
 
+const homeSvg = document.querySelector(".header-search-btn-home-svg");
 
 export function homeFill(){
-    homeBtn.style.fill = "#fff";
-    homeBtn.style.stroke = "#transparent";
+    homeSvg.style.fill = "#fff";
+    homeSvg.style.stroke = "#transparent";
 }
 
 export function homeStroke(){
-    homeBtn.style.fill = "transparent";
-    homeBtn.style.stroke = "#fff";
+    homeSvg.style.fill = "transparent";
+    homeSvg.style.stroke = "var(--text-subdued)";
 }

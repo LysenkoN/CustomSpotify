@@ -1,7 +1,8 @@
+import { homeFill } from "./buttonHome.js";
 
 // Подсказки при навереднии на елемент
 export const profileAvatar = document.querySelector(".header-profile-avatar");
-export const homeBtn = document.querySelector(".header-search-btn-home");
+const homeBtn = document.querySelector(".header-search-btn-home");
 const itemHelpHome = document.querySelector(".help-home");
 const itemHelpProfile = document.querySelector(".help-profile");
 const logo = document.querySelector(".header-logo-img");
@@ -58,9 +59,11 @@ function userInformation(){
 userInformation();
 
 //Делаем по нажатию на кнопку home открытие главной странице
-// function pageHome(){
-//     document.querySelector(".secti-el").innerHTML =
-//     console.log(document.querySelector(".secti-el").childNodes);
+ function pageHome(){
+    // document.querySelector(".secti-el").innerHTML =
 
-// }
-// homeBtn.addEventListener("click", ()=>{pageHome()});
+ }
+homeBtn.addEventListener("click", ()=>{
+    pageHome();
+    // homeFill();
+});
