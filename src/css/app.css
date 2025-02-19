@@ -2,4 +2,6 @@
  @import "./global.css";
  @import './main.css';
  @import './player.css';
+ @import './adaptiveHeader.css';
+ @import './profile.css';
  @import './left_panel.css';

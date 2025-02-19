@@ -4,6 +4,7 @@ import { getAlbum, getNewReleases } from './api_album';
 import { createPlayList } from './api_playlist';
 import { fetchProfile } from './api_users';
 import "./header.js";
+import "./profile.js";
 
 const params = new URLSearchParams(window.location.search);
 let code = params.get("code");
