@@ -1,3 +1,4 @@
+import { homeFill } from "./buttonHome.js";
 
 // Подсказки при навереднии на елемент
 export const profileAvatar = document.querySelector(".header-profile-avatar");
@@ -51,16 +52,18 @@ function userInformation(){
         avatar.classList.add("header-profile-avatar-img");
         avatar.textContent = profile.display_name[0];
         avatar.style.backgroundColor = colorsAvatar[colorRandomIndex];
-        document.querySelector(".header-profile-avatar").append(avatar);
+        profileAvatar.append(avatar);
     }
     document.querySelector(".help-profile").textContent = profile.display_name; //Записываем имя user в подсказку
 }
 userInformation();
 
 //Делаем по нажатию на кнопку home открытие главной странице
-// function pageHome(){
-//     document.querySelector(".secti-el").innerHTML =
-//     console.log(document.querySelector(".secti-el").childNodes);
+ function pageHome(){
+    // document.querySelector(".secti-el").innerHTML =
 
-// }
-// homeBtn.addEventListener("click", ()=>{pageHome()});
+ }
+homeBtn.addEventListener("click", ()=>{
+    pageHome();
+    // homeFill();
+});
