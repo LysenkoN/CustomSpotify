@@ -35,6 +35,7 @@ function avatarProfile(){
 //Заменяем елементы на страницу профиля
 function pageProfile(userName){
     document.querySelector(".secti-el").innerHTML = `
+    <div class="profile">
         <div class="profile-header">
             <div class="profile-data">
                 <div id="avatarBlock" class="profile-data-avatar">
@@ -47,6 +48,27 @@ function pageProfile(userName){
                 </div>
             </div>
         </div>
+                <div class="profile-top-artists">
+            <div class="profile-top-artists-head">
+                <div class="profile-top-artists-head-title">
+                    <div class="title">Топ исполнителей этого месяца</div>
+                    <div class="subtitle">Видны только тебе</div>
+                </div>
+                <div class="show-all">Показать все</div>
+            </div>
+            <div class="profile-top-artists-main">
+                <div class="profile-top-artists-main-item">
+                    <div class="profile-top-artists-main-item-img">
+                        <img src="" alt="">
+                    </div>
+                    <div class="profile-top-artists-main-item-info">
+                        <div class="profile-top-artists-main-item-info-name">Yeat</div>
+                        <div class="profile-top-artists-main-item-info-subtitle">Исполнитель</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
 `;
 avatarProfile();
 }
