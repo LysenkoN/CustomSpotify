@@ -1,5 +1,17 @@
 import {profileAvatar, profile} from "./header.js";
 import {homeStroke} from "./buttonHome.js";
+import {fetchTopArtists} from "./api_user_top.js"
+
+async function displayTopArtists() {
+    try {
+        const data = await fetchTopArtists();
+        console.log("Топ артистов:", data.items);
+        // data.items.forEach(artist => console.log(artist));
+    } catch (error) {
+        console.error("Ошибка загрузки топ-артистов:", error);
+    }
+}
+displayTopArtists();
 
 // Функция для альтернативы аватарки
 function avatarProfile(){
