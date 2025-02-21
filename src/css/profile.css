@@ -6,6 +6,7 @@
     width: 150vh;
     height: 85vh;
     background-color: rgb(41, 40, 40);
+    overflow: auto;
 }
 .profile-header{
     border-top-left-radius: 10px;
@@ -96,7 +97,9 @@
 .profile-top-artists-main{
     display: flex;
     align-items: center;
+    gap: 9px;
     padding: 0 13px;
+    overflow: hidden;
 }
 .profile-top-artists-main-item{
     display: flex;
@@ -105,7 +108,7 @@
     justify-content: center;
     gap: 5px;
     width: 220px;
-    height: 250px;
+    height: 300px;
     border-radius: 8px;
     padding: 10px;
 }
@@ -123,7 +126,6 @@
     width: 195px;
     height: 195px;
     border-radius: 50%;
-    border: 1px solid #fff;
 }
 .profile-top-artists-main-item-info{
     display: flex;

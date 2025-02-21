@@ -5,13 +5,16 @@ import {fetchTopArtists} from "./api_user_top.js"
 async function displayTopArtists() {
     try {
         const data = await fetchTopArtists();
-        console.log("Топ артистов:", data.items);
-        // data.items.forEach(artist => console.log(artist));
+        if (!data?.items || data.items.length === 0) {
+            console.warn("Нет данных о топ-артистах.");
+            return;
+        }
+        topArtists(data.items);
+        console.log("Топ-артисты:", data.items);
     } catch (error) {
         console.error("Ошибка загрузки топ-артистов:", error);
     }
 }
-displayTopArtists();
 
 // Функция для альтернативы аватарки
 function avatarProfile(){
@@ -29,6 +32,39 @@ function avatarProfile(){
         // <path d="M256,304c-87,0-175.3,48-191.64,138.6C62.39,453.52,68.57,464,80,464H432c11.44,0,17.62-10.48,15.65-21.4C431.3,352,343,304,256,304Z" style="fill:none;stroke:var(--essential-subdued);stroke-miterlimit:10;stroke-width:32px"/>
         // </svg>`;
         avatarBlock.append(avatarIcon);
+    }
+}
+
+// Функция для заполнения полей для топ артистов
+function topArtists(arr){
+    for(let i = 0; arr.length > i; i+=1){
+        console.log(arr[i]);
+
+        const column = document.createElement("div");
+        const columnImgBlock = document.createElement("div");
+        const columnImg = document.createElement("img");
+        const columnInfo = document.createElement("div");
+        const columnInfoName = document.createElement("div");
+        const columnInfoSubtitle = document.createElement("div");
+
+        column.classList.add("profile-top-artists-main-item");
+        columnImgBlock.classList.add("profile-top-artists-main-item-img");
+        columnImg.style.width = "195px";
+        columnImg.style.height = "195px";
+        columnImg.style.borderRadius = "50%";
+        columnImg.src = arr[i].images[0].url;
+        columnInfo.classList.add("profile-top-artists-main-item-info");
+        columnInfoName.classList.add("profile-top-artists-main-item-info-name");
+        columnInfoName.textContent = arr[i].name;
+        columnInfoSubtitle.classList.add("profile-top-artists-main-item-info-subtitle");
+        columnInfoSubtitle.textContent = "Исполнитель";
+
+        document.querySelector(".profile-top-artists-main").append(column);
+        column.append(columnImgBlock);
+        columnImgBlock.append(columnImg);
+        column.append(columnInfo);
+        columnInfo.append(columnInfoName);
+        columnInfo.append(columnInfoSubtitle);
     }
 }
 
@@ -57,20 +93,12 @@ function pageProfile(userName){
                 <div class="show-all">Показать все</div>
             </div>
             <div class="profile-top-artists-main">
-                <div class="profile-top-artists-main-item">
-                    <div class="profile-top-artists-main-item-img">
-                        <img src="" alt="">
-                    </div>
-                    <div class="profile-top-artists-main-item-info">
-                        <div class="profile-top-artists-main-item-info-name">Yeat</div>
-                        <div class="profile-top-artists-main-item-info-subtitle">Исполнитель</div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>    
 `;
 avatarProfile();
+displayTopArtists();
 }
 
 profileAvatar.addEventListener("click" ,()=>{
