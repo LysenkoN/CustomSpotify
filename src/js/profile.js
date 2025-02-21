@@ -49,8 +49,8 @@ function topArtists(arr){
 
         column.classList.add("profile-top-artists-main-item");
         columnImgBlock.classList.add("profile-top-artists-main-item-img");
-        columnImg.style.width = "195px";
-        columnImg.style.height = "195px";
+        columnImg.style.width = "172px";
+        columnImg.style.height = "172px";
         columnImg.style.borderRadius = "50%";
         columnImg.src = arr[i].images[0].url;
         columnInfo.classList.add("profile-top-artists-main-item-info");
