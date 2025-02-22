@@ -1,4 +1,20 @@
-import {profileAvatar, profile} from "./header.js"
+import {profileAvatar, profile} from "./header.js";
+import {homeStroke} from "./buttonHome.js";
+import {fetchTopArtists} from "./api_user_top.js"
+
+async function displayTopArtists() {
+    try {
+        const data = await fetchTopArtists();
+        if (!data?.items || data.items.length === 0) {
+            console.warn("Нет данных о топ-артистах.");
+            return;
+        }
+        topArtists(data.items);
+        console.log("Топ-артисты:", data.items);
+    } catch (error) {
+        console.error("Ошибка загрузки топ-артистов:", error);
+    }
+}
 
 // Функция для альтернативы аватарки
 function avatarProfile(){
@@ -19,9 +35,43 @@ function avatarProfile(){
     }
 }
 
+// Функция для заполнения полей для топ артистов
+function topArtists(arr){
+    for(let i = 0; arr.length > i; i+=1){
+        console.log(arr[i]);
+
+        const column = document.createElement("div");
+        const columnImgBlock = document.createElement("div");
+        const columnImg = document.createElement("img");
+        const columnInfo = document.createElement("div");
+        const columnInfoName = document.createElement("div");
+        const columnInfoSubtitle = document.createElement("div");
+
+        column.classList.add("profile-top-artists-main-item");
+        columnImgBlock.classList.add("profile-top-artists-main-item-img");
+        columnImg.style.width = "172px";
+        columnImg.style.height = "172px";
+        columnImg.style.borderRadius = "50%";
+        columnImg.src = arr[i].images[0].url;
+        columnInfo.classList.add("profile-top-artists-main-item-info");
+        columnInfoName.classList.add("profile-top-artists-main-item-info-name");
+        columnInfoName.textContent = arr[i].name;
+        columnInfoSubtitle.classList.add("profile-top-artists-main-item-info-subtitle");
+        columnInfoSubtitle.textContent = "Исполнитель";
+
+        document.querySelector(".profile-top-artists-main").append(column);
+        column.append(columnImgBlock);
+        columnImgBlock.append(columnImg);
+        column.append(columnInfo);
+        columnInfo.append(columnInfoName);
+        columnInfo.append(columnInfoSubtitle);
+    }
+}
+
 //Заменяем елементы на страницу профиля
 function pageProfile(userName){
     document.querySelector(".secti-el").innerHTML = `
+    <div class="profile">
         <div class="profile-header">
             <div class="profile-data">
                 <div id="avatarBlock" class="profile-data-avatar">
@@ -34,10 +84,24 @@ function pageProfile(userName){
                 </div>
             </div>
         </div>
+                <div class="profile-top-artists">
+            <div class="profile-top-artists-head">
+                <div class="profile-top-artists-head-title">
+                    <div class="title">Топ исполнителей этого месяца</div>
+                    <div class="subtitle">Видны только тебе</div>
+                </div>
+                <div class="show-all">Показать все</div>
+            </div>
+            <div class="profile-top-artists-main">
+            </div>
+        </div>
+    </div>    
 `;
 avatarProfile();
+displayTopArtists();
 }
 
 profileAvatar.addEventListener("click" ,()=>{
     pageProfile(profile.display_name,);
+    homeStroke();
 });

@@ -1,3 +1,4 @@
+import { homeFill } from "./buttonHome.js";
 
 // Подсказки при навереднии на елемент
 export const profileAvatar = document.querySelector(".header-profile-avatar");
@@ -33,10 +34,6 @@ logo.addEventListener("mouseout",()=>{unvisible(itemHelpLogo)});
 search.addEventListener("mouseover",()=>{visible(itemHelpSearch)});
 search.addEventListener("mouseout",()=>{unvisible(itemHelpSearch)});
 
-const colorsAvatar = ["#ed2c3f", "#1ed760", "#ffa42b"]; //Задаем масив трьех разных цветов
-let colorRandomIndex = Math.floor(Math.random()*colorsAvatar.length);
-
-
 
 // Записываем данные user
 export const profile = JSON.parse(localStorage.getItem('profile'));
@@ -50,17 +47,19 @@ function userInformation(){
         const avatar = document.createElement("div");
         avatar.classList.add("header-profile-avatar-img");
         avatar.textContent = profile.display_name[0];
-        avatar.style.backgroundColor = colorsAvatar[colorRandomIndex];
-        document.querySelector(".header-profile-avatar").append(avatar);
+        avatar.style.backgroundColor = "var(--text-positive)";
+        profileAvatar.append(avatar);
     }
     document.querySelector(".help-profile").textContent = profile.display_name; //Записываем имя user в подсказку
 }
 userInformation();
 
 //Делаем по нажатию на кнопку home открытие главной странице
-// function pageHome(){
-//     document.querySelector(".secti-el").innerHTML =
-//     console.log(document.querySelector(".secti-el").childNodes);
+ function pageHome(){
+    // document.querySelector(".secti-el").innerHTML =
 
-// }
-// homeBtn.addEventListener("click", ()=>{pageHome()});
+ }
+homeBtn.addEventListener("click", ()=>{
+    pageHome();
+    // homeFill();
+});
