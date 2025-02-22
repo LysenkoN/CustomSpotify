@@ -4,12 +4,20 @@ const drawPlayListBtn = document.getElementsByClassName("media-add-contanier")[0
 let user_profile = JSON.parse(localStorage.getItem('profile'));
 let playlist_id = null;
 
+async function getNewPlaylistName() {
+    const result = await getUserPlayLists(1);
+    return `Мой плейлист ${result.total+1}`;
+}
+
 export async function drawPlaylist(id){
     playlist_id = id;
     let playlist_name = '';
     if (playlist_id) {
         let playlist = await getPlayList(playlist_id);
         playlist_name = playlist.name;
+    }
+    else {
+        playlist_name = await getNewPlaylistName();
     }
     document.getElementsByClassName("secti-el")[0].innerHTML = `
         <div class="playlist_block">
@@ -94,9 +102,7 @@ export async function drawPlaylist(id){
         for (let i = 0; i < elements.length; i++) {
             elements[i].addEventListener("click", async(e) => {
                 if (!playlist_id) {
-                    const result = await getUserPlayLists(1);
-                    console.log(result)
-                    let name = `Мой плейлист ${result.total+1}`;
+                    let name = await getNewPlaylistName();
                     const playlist = await createPlayList(name, '', true);
                     playlist_id = playlist.id;
                 }
