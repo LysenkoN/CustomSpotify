@@ -9,8 +9,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <script src="./src/js/script.js" type="module"></script>
-        <script defer src="./src/js/left_panel.js"></script>
-        <script defer src="./src/js/create_playlist.js"></script>
+        <script type="module" src="./src/js/left_panel.js"></script>
+        <script type="module" src="./src/js/create_playlist.js"></script>
     </head>
     <body>
          <!-- <h1>Display your Spotify profile data</h1>  -->
@@ -104,13 +104,16 @@
               <svg data-encore-id="icon" role="img" aria-hidden="true" fill="grey" class="Svg-sc-ytk21e-0 cAMMLk e-9541-icon" viewBox="0 0 16 16"><path d="M15 14.5H5V13h10v1.5zm0-5.75H5v-1.5h10v1.5zM15 3H5V1.5h10V3zM3 3H1V1.5h2V3zm0 11.5H1V13h2v1.5zm0-5.75H1v-1.5h2v1.5z"></path></svg>
             </div>
           </div>
-          <div class="playlist_list">
-            <div class="icon"></div>
-            <div class="playlist_contanier">
-                <div class="name_artist">Имя исполнителя</div>
-                <div class="role_artist">Исполнитель</div> 
-            </div>
+          <div id="playlist-block">
+            <div class="playlist_list">
+                <div class="icon"></div>
+                <div class="playlist_contanier">
+                    <div class="name_artist">Имя исполнителя</div>
+                    <div class="role_artist">Исполнитель</div> 
+                </div>
+              </div>
           </div>
+          
         </div>
         <main class="block-sing">
             <section class="secti-el">

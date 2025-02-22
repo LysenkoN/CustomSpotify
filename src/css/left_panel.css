@@ -207,6 +207,14 @@
     width: 140px;
     height: 20px;
 }
+@media (max-width: 1200px) {
+    .search_listenedto {
+        gap: 70px;
+    }
+    #mediateka_input {
+        width: 40px;
+    }
+}
 
 .playlist_list {
     display: flex;
@@ -248,4 +256,8 @@
 }
 .role_artist {
     font-size: 12px;
+}
+.left-block-playlists-img {
+    width: 48px;
+    height: 48px;
 }
