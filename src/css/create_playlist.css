@@ -1,0 +1,116 @@
+.playlist_block {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    height: 35%;
+    background: linear-gradient(to bottom, rgb(41,40,40), rgb(35, 38, 38));
+}
+
+.playlist-data{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 28px;
+    padding: 0 28px;
+}
+.playlist-data-picture {
+    width: 150px;
+    height: 150px;
+    border: white, 1px, solid;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' data-encore-id='icon' role='img' aria-hidden='true' class='Svg-sc-ytk21e-0 bneLcE e-9541-icon' viewBox='0 0 24 24'%3E%3Cpath d='m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: contain;
+    border-radius: 15px;
+}
+.playlist-data-block {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.my-playlist {
+    visibility: visible;
+    width: 100%;
+    font-size: 3rem;
+    white-space: nowrap;
+    color: white;
+}
+.playlist-data-block span {
+    color: white;
+}
+.profile-img-username {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-top: 8px;
+    flex-direction: row;
+    gap: 5px;
+
+}
+.profile-img-username img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50% ;
+}
+.profile-img-username span {
+    color: white;
+    text-decoration-line: underline;
+}
+.search-items-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 35%;
+    margin-top: 20px;
+    padding-left: 20px;
+}
+.search-items-block input {
+    background-color: hsla(0, 0%, 100%, .1);
+    border: 0;
+    border-radius: 4px;
+    color: hsla(0, 0%, 100%, .7);
+    height: 30px;
+    opacity: 1;
+    padding: 8px 32px;
+    text-overflow: ellipsis;
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+    -webkit-transition-property: opacity width;
+    transition-property: opacity width;
+    -webkit-transition-timing-function: cubic-bezier(.3,0,.4,1);
+    transition-timing-function: cubic-bezier(.3,0,.4,1);
+    width: 35%;
+}
+.search-items-block span {
+    color: white;
+    font-size: 30px;
+}
+.drawlist {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    margin-top: 20px;
+    gap:5px;
+    width: 90%;
+}
+.icon-artist {
+    width: 55px;
+    height: 55px;
+    border-radius: 50px;
+    opacity: 0.7;
+    background-color: azure;
+}
+.drawplaylist_contanier {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: flex-start;
+    gap: 10px;   
+}
+.name_artist1 {
+    color: white;
+}
+.role_artist1 {
+    font-size: 12px;
+    color: white;
+}

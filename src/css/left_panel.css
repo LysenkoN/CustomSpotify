@@ -207,6 +207,14 @@
     width: 140px;
     height: 20px;
 }
+@media (max-width: 1200px) {
+    .search_listenedto {
+        gap: 70px;
+    }
+    #mediateka_input {
+        width: 40px;
+    }
+}
 
 .playlist_list {
     display: flex;
@@ -224,10 +232,8 @@
    
 }
 .playlist_list:hover .icon {
-    background-image: url('/CustomSpotify/src/img/left_block/play_hover.svg') no-repeat center center;
-    fill:white;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' data-encore-id='icon' role='img' aria-hidden='true' class='Svg-sc-ytk21e-0 bneLcE e-9541-icon' viewBox='0 0 24 24'%3E%3Cpath d='m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z'%3E%3C/path%3E%3C/svg%3E");
     background-size: contain;
-    
 }
 
 .icon {
@@ -250,4 +256,8 @@
 }
 .role_artist {
     font-size: 12px;
+}
+.left-block-playlists-img {
+    width: 48px;
+    height: 48px;
 }

@@ -9,29 +9,54 @@
         height: 85vh;
         background-color: rgb(41, 40, 40);
         .class-elemts{
+            flex-wrap: wrap;
+            
             padding-right: 20px;
             padding-left: 30px;
-            padding-top: 40px;
+            padding-top: 30px;
             padding-bottom: 40px;
             display: flex;
-            justify-content: start;
+            justify-content: space-between;
             align-items: center;
+            
+            .element-bunny:hover{
+                cursor: pointer;
+                transition-duration: 0.3s;
+                filter: brightness(120%);
+                .button-player-bunny{
+                    display: flex;
+                }
+            }
             .element-bunny{
-                background-color: gray;
+                transition-duration: 0.3s;
+                margin-left: 10px;
+                margin-top: 10px;
+                .button-player-bunny{
+                    display: none;
+                    margin-left: 45px;
+                    height: 45px;
+                }
+                .button-player-bunny:hover{
+                    cursor: pointer;
+                    /* transition-duration: 0.3s; */
+                    transform: scale(1.05);
+                    filter: brightness(110%);
+                }
+                background-color: rgb(61, 61, 61);
                 /* border: 1px black solid; */
                 border-radius: 5px;
                 display: flex;
                 align-items: center;
-                width: 17%;
-                height: 15%;
+                width: 24%;
+                height: 25%;
                 .img-input-class{
                     /* border: 1px solid black; */
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
                     img{
-                        width: 40px;
-                        height: 48px;
+                        width: 70px;
+                        height: 70px;
                     }
                 }
                 p{

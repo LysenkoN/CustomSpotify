@@ -9,8 +9,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <script src="./src/js/script.js" type="module"></script>
-        <script defer src="./src/js/header.js"></script>
-        <script defer src="./src/js/left_panel.js"></script>
+        <script type="module" src="./src/js/left_panel.js"></script>
+        <script type="module" src="./src/js/create_playlist.js"></script>
     </head>
     <body>
          <!-- <h1>Display your Spotify profile data</h1>  -->
@@ -35,7 +35,7 @@
         </div>
         <div class="header-search">
             <div class="header-search-btn-home" href="#">
-                <svg width="24px" height="28px" fill="white" data-encore-id="icon" role="img" aria-hidden="true"
+                <svg class="header-search-btn-home-svg" width="24px" height="28px" fill="white" stroke="" stroke-width="2px" data-encore-id="icon" role="img" aria-hidden="true"
                     class="Svg-sc-ytk21e-0 bneLcE e-9541-icon" viewBox="0 0 24 24">
                     <path
                         d="M13.5 1.515a3 3 0 0 0-3 0L3 5.845a2 2 0 0 0-1 1.732V21a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V7.577a2 2 0 0 0-1-1.732l-7.5-4.33z">
@@ -58,7 +58,7 @@
             </a>
             <div class="help-profile"></div>
         </div>
-      </header>
+    </header>
       
       <section class="center-elemnts">
         <div class="main_left_panel_block">
@@ -71,7 +71,7 @@
               <div id="media_add" class="svg">
                 <svg data-encore-id="icon" role="img" aria-hidden="true" class="Svg-sc-ytk21e-0 dYnaPI e-9541-icon" viewBox="0 0 16 16"><path d="M15.25 8a.75.75 0 0 1-.75.75H8.75v5.75a.75.75 0 0 1-1.5 0V8.75H1.5a.75.75 0 0 1 0-1.5h5.75V1.5a.75.75 0 0 1 1.5 0v5.75h5.75a.75.75 0 0 1 .75.75z"></path></svg>
               </div>
-              <div class="media-add-block">
+              <div id="media-add-button" class="media-add-block">
                 <div class="media-add-contanier">
                 <svg data-encore-id="icon" role="img" aria-hidden="true" class="Svg-sc-ytk21e-0 dYnaPI e-9541-icon" viewBox="0 0 16 16"><path d="M2 0v2H0v1.5h2v2h1.5v-2h2V2h-2V0H2zm11.5 2.5H8.244A5.482 5.482 0 0 0 7.966 1H15v11.75A2.75 2.75 0 1 1 12.25 10h1.25V2.5zm0 9h-1.25a1.25 1.25 0 1 0 1.25 1.25V11.5zM4 8.107a5.465 5.465 0 0 0 1.5-.593v5.236A2.75 2.75 0 1 1 2.75 10H4V8.107zM4 11.5H2.75A1.25 1.25 0 1 0 4 12.75V11.5z"></path></svg>
                 <span>Создать плейлист</span>
@@ -104,13 +104,16 @@
               <svg data-encore-id="icon" role="img" aria-hidden="true" fill="grey" class="Svg-sc-ytk21e-0 cAMMLk e-9541-icon" viewBox="0 0 16 16"><path d="M15 14.5H5V13h10v1.5zm0-5.75H5v-1.5h10v1.5zM15 3H5V1.5h10V3zM3 3H1V1.5h2V3zm0 11.5H1V13h2v1.5zm0-5.75H1v-1.5h2v1.5z"></path></svg>
             </div>
           </div>
-          <div class="playlist_list">
-            <div class="icon"></div>
-            <div class="playlist_contanier">
-                <div class="name_artist">Имя исполнителя</div>
-                <div class="role_artist">Исполнитель</div> 
-            </div>
+          <div id="playlist-block">
+            <div class="playlist_list">
+                <div class="icon"></div>
+                <div class="playlist_contanier">
+                    <div class="name_artist">Имя исполнителя</div>
+                    <div class="role_artist">Исполнитель</div> 
+                </div>
+              </div>
           </div>
+          
         </div>
 
 
@@ -121,13 +124,14 @@
             <section class="secti-el">
                 <div class="high-div">
                     <div class="class-elemts">
-                        <div class="element-bunny">
+                        <div class="element-bunny"> <!--! Block-playlist -->
                             <div class="img-input-class">
-                                <img class="picture-track-high-div" src="./src/img/Spotify_Primary_Logo_RGB_Green.png" alt="picture">
+                                <img class="picture-track-high-div" src="./src/img/Spotify_Primary_Logo_RGB_White.png" alt="picture">
                             </div>
                             <strong>
                                 <p class="text-track-high-div">Улюблені пісні</p>
                             </strong>
+                            <img class="button-player-bunny" src="./src/img/main/player-button-green-black.png" alt="">
                         </div>
                     </div>
                 </div>

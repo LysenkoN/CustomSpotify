@@ -92,6 +92,7 @@
 }
 .help-home, .help-profile, .help-header-logo-img, .help-svg-search{
     position: absolute;
+    z-index: 3;
     top: 67px;
     display: none;
     align-items: center;
