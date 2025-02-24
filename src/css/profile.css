@@ -109,9 +109,13 @@
     height: 250px;
     border-radius: 8px;
     padding: 10px;
+    cursor: pointer;
 }
 .profile-top-artists-main-item:hover{
     background-color: #4e4d4d6a;
+}
+.profile-top-artists-main-item:active{
+    background-color: var(--background-press);
 }
 .profile-top-artists-main-item-img{
     display: flex;
@@ -127,7 +131,6 @@
     justify-content: start;
     gap: 7px;
     width: 100%;
-    cursor: pointer;
 }
 .profile-top-artists-main-item-info-name{
     color: var(--text-base);
