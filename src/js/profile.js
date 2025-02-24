@@ -2,7 +2,7 @@ import {profileAvatar, profile} from "./header.js";
 import {homeStroke} from "./buttonHome.js";
 import {fetchTopArtists} from "./api_user_top.js"
 
-async function displayTopArtists() {
+export async function displayTopArtists() {
     try {
         const data = JSON.parse(localStorage.getItem("topArtists"));
         if (!data?.items || data.items.length === 0) {
