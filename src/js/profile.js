@@ -4,7 +4,7 @@ import {fetchTopArtists} from "./api_user_top.js"
 
 async function displayTopArtists() {
     try {
-        const data = await fetchTopArtists();
+        const data = JSON.parse(localStorage.getItem("topArtists"));
         if (!data?.items || data.items.length === 0) {
             console.warn("Нет данных о топ-артистах.");
             return;
