@@ -1,5 +1,6 @@
 import {profileAvatar, profile} from "./header.js";
 import {homeStroke} from "./buttonHome.js";
+import { openPageArtists } from "./artists.js";
 import {fetchTopArtists} from "./api_user_top.js"
 
 export async function displayTopArtists() {
@@ -99,6 +100,7 @@ function pageProfile(userName){
 `;
 avatarProfile();
 displayTopArtists();
+openPageArtists();
 }
 
 profileAvatar.addEventListener("click" ,()=>{

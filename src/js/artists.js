@@ -8,9 +8,8 @@ function pageArtists(){
                     <div class="title">Топ исполнителей этого месяца</div>
                     <div class="subtitle">Видны только тебе</div>
                 </div>
-                <div class="show-all">Показать все</div>
             </div>
-            <div class="profile-top-artists-main">
+            <div style="flex-wrap: wrap;" class="profile-top-artists-main">
                 <div class="profile-top-artists-main-item"></div>
             </div>
         </div>
@@ -18,6 +17,8 @@ function pageArtists(){
     displayTopArtists();
 }
 
-document.querySelector(".show-all").addEventListener("click", ()=>{
-    pageArtists();
-})
+export function openPageArtists(){
+    document.querySelector(".show-all").addEventListener("click", ()=>{
+        pageArtists();
+    });
+}
