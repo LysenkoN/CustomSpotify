@@ -11,7 +11,6 @@ export async function displayTopArtists() {
             return;
         }
         topArtists(data.items);
-        console.log("Топ-артисты:", data.items);
     } catch (error) {
         console.error("Ошибка загрузки топ-артистов:", error);
     }
@@ -39,8 +38,6 @@ function avatarProfile(){
 // Функция для заполнения полей для топ артистов
 function topArtists(arr){
     for(let i = 0; arr.length > i; i+=1){
-        console.log(arr[i]);
-
         const column = document.createElement("div");
         const columnImgBlock = document.createElement("div");
         const columnImg = document.createElement("img");
