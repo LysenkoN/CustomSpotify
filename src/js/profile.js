@@ -35,25 +35,21 @@ function avatarProfile(){
     }
 }
 
-function blockTopArtists(srcImg, nameArtist){
-    const itemProfile = `
-    <div class="profile-top-artists-main-item">
-        <div class="profile-top-artists-main-item-img">
-            <img style="width: 173px; height: 173px; border-radius: 50%;" src="${srcImg}" alt="">
-        </div>
-        <div class="profile-top-artists-main-item-info">
-            <div class="profile-top-artists-main-item-info-name">${nameArtist}</div>
-            <div class="profile-top-artists-main-item-info-subtitle">Исполнитель</div>
-        </div>
-    </div>
-    `
-    document.querySelector(".profile-top-artists-main").innerHTML += itemProfile;
-}
-
 // Функция для заполнения полей для топ артистов
 function topArtists(arr){
     for(let i = 0; arr.length > i; i+=1){
-        blockTopArtists(arr[i].images[0].url, arr[i].name);
+        const itemProfile = `
+        <div class="profile-top-artists-main-item">
+            <div class="profile-top-artists-main-item-img">
+                <img style="width: 173px; height: 173px; border-radius: 50%;" src="${arr[i].images[0].url}" alt="">
+            </div>
+            <div class="profile-top-artists-main-item-info">
+                <div class="profile-top-artists-main-item-info-name">${arr[i].name}</div>
+                <div class="profile-top-artists-main-item-info-subtitle">Исполнитель</div>
+            </div>
+        </div>
+        `
+        document.querySelector(".profile-top-artists-main").innerHTML += itemProfile;
     }
 }
 
