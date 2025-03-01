@@ -1,14 +1,12 @@
 import {profileAvatar, profile} from "./header.js";
 import {homeStroke} from "./buttonHome.js";
 import { openPageArtists } from "./artists.js";
-import {fetchTopArtists} from "./api_user_top.js"
 
 export async function displayTopArtists() {
     try {
         const data = JSON.parse(localStorage.getItem("topArtists"));
         if (!data?.items || data.items.length === 0) {
-            console.warn("Нет данных о топ-артистах.");
-            return;
+            document.querySelector(".profile-top-artists").remove();
         }
         topArtists(data.items);
     } catch (error) {
