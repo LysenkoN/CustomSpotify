@@ -17,3 +17,4 @@ export async function fetchTopArtists() {
         throw new Error(`Failed to fetch top artists: ${result.status}`);
     }
 }
+localStorage.setItem("topArtists", JSON.stringify(await fetchTopArtists()));

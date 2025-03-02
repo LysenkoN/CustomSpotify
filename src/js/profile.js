@@ -1,16 +1,14 @@
 import {profileAvatar, profile} from "./header.js";
 import {homeStroke} from "./buttonHome.js";
-import {fetchTopArtists} from "./api_user_top.js"
+import { openPageArtists } from "./artists.js";
 
-async function displayTopArtists() {
+export async function displayTopArtists() {
     try {
-        const data = await fetchTopArtists();
+        const data = JSON.parse(localStorage.getItem("topArtists"));
         if (!data?.items || data.items.length === 0) {
-            console.warn("Нет данных о топ-артистах.");
-            return;
+            document.querySelector(".profile-top-artists").remove();
         }
         topArtists(data.items);
-        console.log("Топ-артисты:", data.items);
     } catch (error) {
         console.error("Ошибка загрузки топ-артистов:", error);
     }
@@ -38,33 +36,18 @@ function avatarProfile(){
 // Функция для заполнения полей для топ артистов
 function topArtists(arr){
     for(let i = 0; arr.length > i; i+=1){
-        console.log(arr[i]);
-
-        const column = document.createElement("div");
-        const columnImgBlock = document.createElement("div");
-        const columnImg = document.createElement("img");
-        const columnInfo = document.createElement("div");
-        const columnInfoName = document.createElement("div");
-        const columnInfoSubtitle = document.createElement("div");
-
-        column.classList.add("profile-top-artists-main-item");
-        columnImgBlock.classList.add("profile-top-artists-main-item-img");
-        columnImg.style.width = "172px";
-        columnImg.style.height = "172px";
-        columnImg.style.borderRadius = "50%";
-        columnImg.src = arr[i].images[0].url;
-        columnInfo.classList.add("profile-top-artists-main-item-info");
-        columnInfoName.classList.add("profile-top-artists-main-item-info-name");
-        columnInfoName.textContent = arr[i].name;
-        columnInfoSubtitle.classList.add("profile-top-artists-main-item-info-subtitle");
-        columnInfoSubtitle.textContent = "Исполнитель";
-
-        document.querySelector(".profile-top-artists-main").append(column);
-        column.append(columnImgBlock);
-        columnImgBlock.append(columnImg);
-        column.append(columnInfo);
-        columnInfo.append(columnInfoName);
-        columnInfo.append(columnInfoSubtitle);
+        const itemProfile = `
+        <div class="profile-top-artists-main-item">
+            <div class="profile-top-artists-main-item-img">
+                <img style="width: 173px; height: 173px; border-radius: 50%;" src="${arr[i].images[0].url}" alt="">
+            </div>
+            <div class="profile-top-artists-main-item-info">
+                <div class="profile-top-artists-main-item-info-name">${arr[i].name}</div>
+                <div class="profile-top-artists-main-item-info-subtitle">Исполнитель</div>
+            </div>
+        </div>
+        `
+        document.querySelector(".profile-top-artists-main").innerHTML += itemProfile;
     }
 }
 
@@ -84,7 +67,7 @@ function pageProfile(userName){
                 </div>
             </div>
         </div>
-                <div class="profile-top-artists">
+        <div class="profile-top-artists">
             <div class="profile-top-artists-head">
                 <div class="profile-top-artists-head-title">
                     <div class="title">Топ исполнителей этого месяца</div>
@@ -93,12 +76,14 @@ function pageProfile(userName){
                 <div class="show-all">Показать все</div>
             </div>
             <div class="profile-top-artists-main">
+            
             </div>
         </div>
     </div>    
 `;
 avatarProfile();
 displayTopArtists();
+openPageArtists();
 }
 
 profileAvatar.addEventListener("click" ,()=>{
