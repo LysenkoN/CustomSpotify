@@ -13,6 +13,7 @@ let accessToken = undefined;
 if (!code) {
     redirectToAuthCodeFlow(clientId);
 } else {
+    console.log(code)
     accessToken = localStorage.getItem(accessTokenVar); 
     if (!accessToken || accessToken === 'undefined') {
         let result = await getAccessTokenAPI(code);
@@ -23,6 +24,7 @@ if (!code) {
     const profile = await fetchProfile();
     console.log(profile);
     localStorage.setItem('profile', JSON.stringify(profile));
+    // userInformation();
     populateUI(profile);
 
     // Test API integrations are below
@@ -36,7 +38,9 @@ if (!code) {
     // console.log(new_playlist);
 }
 
+
 async function redirectToAuthCodeFlow(clientId) {
+    console.log(111111)
     const verifier = generateCodeVerifier(128);
     const challenge = await generateCodeChallenge(verifier);
 

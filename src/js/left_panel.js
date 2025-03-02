@@ -1,4 +1,5 @@
 import { getUserPlayLists } from "./api_playlist";
+import { getFollowedArtists } from "./api_users";
 import { drawPlaylist } from "./create_playlist";
 
 let mediatekaSearch = document.getElementById("mediateka_search");
@@ -9,6 +10,7 @@ let mediaAdd = document.getElementById("media_add");
 let mediaAddBlock = document.getElementsByClassName("media-add-block")[0];
 let body = document.getElementsByTagName('body')[0];
 let playlistBlock = document.getElementById('playlist-block');
+let followedArtistsBlock = document.getElementById('followed-artists-block');
 
 
 mediatekaSearch.addEventListener("click",()=> {
@@ -73,4 +75,33 @@ async function drawMyPlayLists() {
     }
 }
 
+async function drawFollowedArtists() {
+    const result = await getFollowedArtists(null, 10);
+    console.log(result);
+    followedArtistsBlock.innerHTML = '';
+    result.artists.items.forEach(item => {
+        let img = item.images ? `<img class="left-block-followed-artists-img" src="${item.images[0].url}">` : '<div class="icon1"></div>';
+        followedArtistsBlock.innerHTML += 
+            `<div class="followed-artists-list" data-followed_id="${item.id}">
+                ${img}
+                <div class="followed-artists-contanier">
+                    <div class="name_artist">${item.name}</div>
+                    <div class="role_artist">Исполнитель</div> 
+                </div>
+            </div>`
+    })
+
+    let elements = document.getElementsByClassName('followed-artists-list');
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].addEventListener("click", async(e) => {
+            let target = e.target;
+            let parent = findAncestor(target, 'followed-artists-list');
+            if (parent) {
+                drawPlaylist(parent.getAttribute("data-followed_id"));
+            }
+        })
+    }
+}
+
 drawMyPlayLists()
+drawFollowedArtists()

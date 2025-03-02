@@ -76,9 +76,10 @@ export async function drawPlaylist(id){
                             <div class="icon-artist"><img src=${item.album.images[2].url}></div>
                             <div class="drawplaylist_contanier">
                                 <div class="name_artist1">${item.name}</div>
-                                <div class="name_track1">Исполнитель</div>
-                                <button class="add_track" data-track_id="${item.uri}">Добавить</button> 
+                                <div class="name_track1">${item.artists[0].name}</div>    
                             </div>
+                            <div class="album_name">${item.album.name}</div>
+                            <div class="add_track_wrap"><button class="add_track" data-track_id="${item.uri}">Добавить</button></div>
                         </div>`
                 }
             })

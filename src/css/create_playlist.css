@@ -88,10 +88,12 @@
 .drawlist {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     margin-left: 20px;
     margin-top: 20px;
     gap:5px;
     width: 90%;
+    color: white;
 }
 .icon-artist {
     width: 55px;
@@ -106,11 +108,36 @@
     justify-content: center;
     justify-items: flex-start;
     gap: 10px;   
+    width: 30%;
+    margin-left: 20px;
+    font-size: 14px;
 }
 .name_artist1 {
-    color: white;
+   font-weight: 700;
 }
-.role_artist1 {
-    font-size: 12px;
+
+.album_name {
+    font-weight: 500;
+    width: 30%;
+    font-size: 14px;
+    margin-top:10px;
+    color: azure;
+}
+.add_track_wrap {
+    width: 30%;
+
+   
+}
+.add_track {
+    border-radius: 10px;
+    border: white 1px solid;
     color: white;
+    font-size: 16px;
+    width: 100px;
+    height: 25px;
+    float: inline-end;
+    
+}
+.add_track_wrap:hover {
+    transform: scale(1.1);
 }
