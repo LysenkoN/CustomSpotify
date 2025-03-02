@@ -20,7 +20,10 @@ function pageArtists(){
 }
 
 export function openPageArtists(){
-    document.querySelector(".show-all").addEventListener("click", ()=>{
-        pageArtists();
-    });
+    let elements = document.getElementsByClassName("show-all");
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].addEventListener("click", async(e) => {
+            pageArtists();
+        })
+    }
 }

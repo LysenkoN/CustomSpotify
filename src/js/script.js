@@ -2,6 +2,7 @@ import { clientId, redirect_uri, scopes, accessTokenVar, refreshTokenVar } from 
 import { getAccessTokenAPI } from './api_access';
 import { getAlbum, getNewReleases } from './api_album';
 import { createPlayList } from './api_playlist';
+import {fetchTopArtists} from './api_user_top.js';
 import { fetchProfile } from './api_users';
 import "./header.js";
 import "./profile.js";
@@ -13,7 +14,6 @@ let accessToken = undefined;
 if (!code) {
     redirectToAuthCodeFlow(clientId);
 } else {
-    console.log(code)
     accessToken = localStorage.getItem(accessTokenVar); 
     if (!accessToken || accessToken === 'undefined') {
         let result = await getAccessTokenAPI(code);
@@ -25,6 +25,7 @@ if (!code) {
     console.log(profile);
     localStorage.setItem('profile', JSON.stringify(profile));
     // userInformation();
+    localStorage.setItem("topArtists", JSON.stringify(await fetchTopArtists()));
     populateUI(profile);
 
     // Test API integrations are below
@@ -40,7 +41,6 @@ if (!code) {
 
 
 async function redirectToAuthCodeFlow(clientId) {
-    console.log(111111)
     const verifier = generateCodeVerifier(128);
     const challenge = await generateCodeChallenge(verifier);
 

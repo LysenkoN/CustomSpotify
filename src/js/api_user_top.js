@@ -7,7 +7,6 @@ export async function fetchTopArtists() {
         method: "GET",
         headers: { Authorization: `Bearer ${accessToken}` }
     });
-
     if (result.ok) {
         return result.json();
     } else if (result.status === 401) {
