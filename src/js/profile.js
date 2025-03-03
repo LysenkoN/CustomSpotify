@@ -9,7 +9,7 @@ export async function displayTopArtists() {
         if (!data?.items || data.items.length === 0) {
             document.querySelector(".profile-top-artists").remove();
         }
-        if (data.items.length) {
+        else {
             topArtists(data.items);
         }
     } catch (error) {

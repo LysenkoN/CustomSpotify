@@ -14,7 +14,9 @@ export async function drawPlaylist(id){
     let playlist_name = '';
     if (playlist_id) {
         let playlist = await getPlayList(playlist_id);
-        playlist_name = playlist.name;
+        if (playlist && 'name' in playlist) {
+            playlist_name = playlist.name;
+        }
     }
     else {
         playlist_name = await getNewPlaylistName();
