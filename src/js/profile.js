@@ -42,7 +42,7 @@ export function avatarProfile(){
 export function topArtists(arr){
     for(let i = 0; arr.length > i; i+=1){
         const itemProfile = `
-        <div class="profile-top-artists-main-item">
+        <div style="width:200px;" class="profile-top-artists-main-item">
             <div class="profile-top-artists-main-item-img">
                 <img style="width: 173px; height: 173px; border-radius: 50%;" src="${arr[i].images[0].url}" alt="">
             </div>
