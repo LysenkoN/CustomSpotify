@@ -9,8 +9,8 @@ export async function displayTopArtists() {
         if (!data?.items || data.items.length === 0) {
             document.querySelector(".profile-top-artists").remove();
         }
-        if (data.items) {
-            topArtists(data.items.length);
+        if (data.items.length) {
+            topArtists(data.items);
         }
     } catch (error) {
         console.error("Ошибка загрузки топ-артистов:", error);
