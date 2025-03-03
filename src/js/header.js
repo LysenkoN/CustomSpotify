@@ -36,9 +36,8 @@ search.addEventListener("mouseout",()=>{unvisible(itemHelpSearch)});
 
 
 // Записываем данные user
-export const profile = JSON.parse(localStorage.getItem('profile'));
 export function userInformation(){
-    
+    let profile = JSON.parse(localStorage.getItem('profile'));
     if(profile.images.length !== 0){ //Делаем проверку на наличие аватарки
         document.querySelector(".header-profile-avatar-img").src = profile.images[0].url; // Выводим ее в отведенное место
      }else{
@@ -52,7 +51,6 @@ export function userInformation(){
     }
     document.querySelector(".help-profile").textContent = profile.display_name; //Записываем имя user в подсказку
 }
-userInformation();
 
 //Делаем по нажатию на кнопку home открытие главной странице
  function pageHome(){

@@ -6,6 +6,10 @@ import {fetchTopArtists} from './api_user_top.js';
 import { fetchProfile } from './api_users';
 import "./header.js";
 import "./profile.js";
+import {userInformation} from "./header.js";
+import {avatarProfile,displayTopArtists} from "./profile.js";
+import {openPageArtists} from "./artists.js";
+import {drawMyPlayLists, drawFollowedArtists} from "./left_panel.js"
 
 const params = new URLSearchParams(window.location.search);
 let code = params.get("code");
@@ -24,9 +28,12 @@ if (!code) {
     const profile = await fetchProfile();
     console.log(profile);
     localStorage.setItem('profile', JSON.stringify(profile));
-    // userInformation();
-    localStorage.setItem("topArtists", JSON.stringify(await fetchTopArtists()));
-    populateUI(profile);
+    userInformation();
+    openPageArtists();
+
+    drawMyPlayLists();
+    drawFollowedArtists();
+    // populateUI(profile);
 
     // Test API integrations are below
     // const test_releases = await getNewReleases(20, 0);

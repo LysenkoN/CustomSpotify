@@ -47,7 +47,7 @@ body.addEventListener("click", (e)=> {
     }
 })
 
-async function drawMyPlayLists() {
+export async function drawMyPlayLists() {
     const result = await getUserPlayLists(50);
     console.log(result);
     playlistBlock.innerHTML = '';
@@ -75,7 +75,7 @@ async function drawMyPlayLists() {
     }
 }
 
-async function drawFollowedArtists() {
+export async function drawFollowedArtists() {
     const result = await getFollowedArtists(null, 10);
     console.log(result);
     followedArtistsBlock.innerHTML = '';
@@ -102,6 +102,3 @@ async function drawFollowedArtists() {
         })
     }
 }
-
-drawMyPlayLists()
-drawFollowedArtists()

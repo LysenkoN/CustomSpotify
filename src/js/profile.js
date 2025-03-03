@@ -1,21 +1,26 @@
-import {profileAvatar, profile} from "./header.js";
+import {profileAvatar} from "./header.js";
 import {homeStroke} from "./buttonHome.js";
+import {fetchTopArtists} from './api_user_top.js'
 import { openPageArtists } from "./artists.js";
 
 export async function displayTopArtists() {
     try {
-        const data = JSON.parse(localStorage.getItem("topArtists"));
+        const data = JSON.stringify(await fetchTopArtists());
         if (!data?.items || data.items.length === 0) {
             document.querySelector(".profile-top-artists").remove();
         }
-        topArtists(data.items);
+        if (data.items) {
+            topArtists(data.items.length);
+        }
     } catch (error) {
         console.error("Ошибка загрузки топ-артистов:", error);
     }
 }
 
 // Функция для альтернативы аватарки
-function avatarProfile(){
+export function avatarProfile(){
+    let profile = JSON.parse(localStorage.getItem('profile'));
+    let avatarImg = document.getElementById('avatarImg');
     if(profile.images.length !== 0){
         avatarImg.src = profile.images[0].url;
     }else{
@@ -34,7 +39,7 @@ function avatarProfile(){
 }
 
 // Функция для заполнения полей для топ артистов
-function topArtists(arr){
+export function topArtists(arr){
     for(let i = 0; arr.length > i; i+=1){
         const itemProfile = `
         <div class="profile-top-artists-main-item">
@@ -52,7 +57,8 @@ function topArtists(arr){
 }
 
 //Заменяем елементы на страницу профиля
-function pageProfile(userName){
+function pageProfile(){
+    let userName = JSON.parse(localStorage.getItem('profile')).display_name;
     document.querySelector(".secti-el").innerHTML = `
     <div class="profile">
         <div class="profile-header">
@@ -81,12 +87,11 @@ function pageProfile(userName){
         </div>
     </div>    
 `;
-avatarProfile();
-displayTopArtists();
-openPageArtists();
 }
 
 profileAvatar.addEventListener("click" ,()=>{
-    pageProfile(profile.display_name,);
+    pageProfile();
+    avatarProfile();
+    displayTopArtists();
     homeStroke();
 });
