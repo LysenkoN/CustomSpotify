@@ -11,6 +11,7 @@ export async function displayTopArtists() {
         }
         else {
             topArtists(data.items);
+            // document.querySelector(".profile-top-artists-main-item").addEventListener("click",(event)=>{console.log(data.items[0].href)});
         }
     } catch (error) {
         console.error("Ошибка загрузки топ-артистов:", error);
