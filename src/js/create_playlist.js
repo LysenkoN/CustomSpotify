@@ -116,8 +116,8 @@ export async function drawPlaylist(id){
     })
 }
 async function refreshPage() {
-    let items = await getPlayListItems(playlist_id);
-    console.log(items)
+    // let items = await getPlayListItems(playlist_id);
+    // console.log(items)
     let playlist_tracks = document.getElementById('playlist_tracks');
     playlist_tracks.innerHTML = '';
     // result.items.forEach(item => {
