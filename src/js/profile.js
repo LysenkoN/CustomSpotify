@@ -5,7 +5,7 @@ import { openPageArtists } from "./artists.js";
 
 export async function displayTopArtists() {
     try {
-        const data = JSON.stringify(await fetchTopArtists());
+        const data = await fetchTopArtists();
         if (!data?.items || data.items.length === 0) {
             document.querySelector(".profile-top-artists").remove();
         }
@@ -87,6 +87,7 @@ function pageProfile(){
         </div>
     </div>    
 `;
+openPageArtists();
 }
 
 profileAvatar.addEventListener("click" ,()=>{
