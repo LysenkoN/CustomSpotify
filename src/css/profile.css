@@ -97,7 +97,6 @@
 .profile-top-artists-main{
     display: flex;
     align-items: center;
-    padding: 0 13px;
     overflow: hidden;
 }
 .profile-top-artists-main-item{

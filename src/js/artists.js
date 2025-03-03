@@ -10,7 +10,7 @@ function pageArtists(){
                     <div class="subtitle">Видны только тебе</div>
                 </div>
             </div>
-            <div style="flex-wrap: wrap; width: 100%;" class="profile-top-artists-main">
+            <div style="flex-wrap: wrap; width: 100%; gap:5.5px;" class="profile-top-artists-main">
                 
             </div>
         </div>
