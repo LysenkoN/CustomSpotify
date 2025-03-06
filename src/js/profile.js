@@ -11,7 +11,17 @@ export async function displayTopArtists() {
         }
         else {
             topArtists(data.items);
-            // document.querySelector(".profile-top-artists-main-item").addEventListener("click",(event)=>{console.log(data.items[0].href)});
+            document.querySelectorAll(".profile-top-artists-main-item").forEach(item => {
+                item.addEventListener("click", (event) => {
+                    const index = [...document.querySelectorAll(".profile-top-artists-main-item")].indexOf(event.currentTarget);
+                    
+                    if (data.items[index]) {
+                        const hrefArtists = data.items[index].href;
+                    } else {
+                        console.error("Ошибка: Артист не найден в data.items");
+                    }
+                });
+            });
         }
     } catch (error) {
         console.error("Ошибка загрузки топ-артистов:", error);
@@ -92,8 +102,8 @@ openPageArtists();
 }
 
 profileAvatar.addEventListener("click" ,()=>{
+    displayTopArtists();
     pageProfile();
     avatarProfile();
-    displayTopArtists();
     homeStroke();
 });
