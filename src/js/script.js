@@ -8,7 +8,7 @@ import "./header.js";
 import "./profile.js";
 import {userInformation} from "./header.js";
 import {avatarProfile,displayTopArtists} from "./profile.js";
-import {openPageArtists} from "./artists.js";
+import {openPageArtists} from "./topArtists.js";
 import {drawMyPlayLists, drawFollowedArtists} from "./left_panel.js"
 
 const params = new URLSearchParams(window.location.search);
