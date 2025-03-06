@@ -1,7 +1,8 @@
 import {profileAvatar} from "./header.js";
 import {homeStroke} from "./buttonHome.js";
-import {fetchTopArtists} from './api_user_top.js'
-import { openPageArtists } from "./artists.js";
+import {fetchTopArtists} from './api_user_top.js';
+import { openPageArtists } from "./topArtists.js";
+import { getHrefArtist } from "./api_artists.js";
 
 export async function displayTopArtists() {
     try {
@@ -11,17 +12,7 @@ export async function displayTopArtists() {
         }
         else {
             topArtists(data.items);
-            document.querySelectorAll(".profile-top-artists-main-item").forEach(item => {
-                item.addEventListener("click", (event) => {
-                    const index = [...document.querySelectorAll(".profile-top-artists-main-item")].indexOf(event.currentTarget);
-                    
-                    if (data.items[index]) {
-                        const hrefArtists = data.items[index].href;
-                    } else {
-                        console.error("Ошибка: Артист не найден в data.items");
-                    }
-                });
-            });
+            getHrefArtist();
         }
     } catch (error) {
         console.error("Ошибка загрузки топ-артистов:", error);
