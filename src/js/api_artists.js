@@ -5,15 +5,15 @@ const data = await fetchTopArtists();
 
 export function getHrefArtist(){
     document.querySelectorAll(".profile-top-artists-main-item").forEach(item => {
-        item.addEventListener("click", (event) => {
+        item.addEventListener("click", async (event) => {
             const index = [...document.querySelectorAll(".profile-top-artists-main-item")].indexOf(event.currentTarget);
             
             if (data.items[index]) {
-                const hrefArtists = data.items[index].href;
-                const dataArtists = fetchArtists(hrefArtists);
-                console.log(dataArtists);
-            } else {
-                console.error("Ошибка: Артист не найден в data.items");
+                try{
+                    console.log(await fetchArtists(data.items[index].href));
+                }catch(error){
+                    console.error(`Ошибка: ${error}`);
+                }
             }
         });
     })
