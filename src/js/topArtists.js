@@ -20,7 +20,7 @@ function pageArtists(){
 }
 
 export function openPageArtists(){
-    let elements = document.getElementsByClassName("show-all");
+    const elements = document.getElementsByClassName("show-all");
     for (let i = 0; i < elements.length; i++) {
         elements[i].addEventListener("click", async(e) => {
             pageArtists();
