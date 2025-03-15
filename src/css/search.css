@@ -1,0 +1,66 @@
+.search{
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    border-radius: 10px;
+    width: 150vh;
+    height: 85vh;
+    padding: 15px 20px;
+    background-color: rgb(41, 40, 40);
+}
+.artist-track{
+    display: flex;
+    align-items: start;
+    gap: 15px;
+    width: 100%;
+    min-height: 280px;
+}
+.artist-serch{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 450px;
+}
+.artist-serch p, .artist-serch h2{
+    margin: 0;
+}
+.artist-serch-title{
+    width: 100%;
+    padding-bottom: 10px;
+    font-size: 27px;
+    color: var(--text-base);
+}
+.artist-serch-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    min-height: 180px;
+    border-radius: 10px;
+    background-color: #1f1f1f;
+    transition: 500ms;
+}
+.artist-serch-block:hover{
+    background-color: hsla(0, 0%, 100%, .1);
+}
+.artist-serch-block img{
+    border: #fff 1px solid;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-left: 26px;
+}
+.artist-serch-block-info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 26px;
+}
+.artist-serch-block-name{
+    color: var(--text-base);
+    font-size: 30px;
+}
+.artist-serch-block-text{
+    color: #b3b3b3;
+}
