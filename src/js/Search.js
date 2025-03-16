@@ -1,4 +1,5 @@
 import {searchAPI} from "./api_search.js";
+import {homeStroke} from "./buttonHome.js";
 
 const searchInput = document.getElementsByClassName("header-search-input")[0];
 searchInput.addEventListener("change", async ()=>{
@@ -10,6 +11,8 @@ searchInput.addEventListener("change", async ()=>{
         console.error("Ошибка загрузки топ-артистов:", error);
     }
 });
+
+const msToS = (ms) => ms / 60000;
 
 function searchtml(data){
     document.querySelector(".secti-el").innerHTML = `
@@ -27,9 +30,23 @@ function searchtml(data){
             </div>
             <div class="track-serch">
                 <div class="track-serch-title">Треки</div>
-                <div class="track-serch-block"></div>
+                <div class="track-serch-block">
+                    <div class="track-serch-block-item">
+                        <div class="track-serch-block-item-info-track">
+                            <div class="track-serch-block-item-info-track-picture">
+                                <img style="width: 40px; height: 40px;" class="info-track-image" src="${data.tracks.items[0].album.images[2].url}" alt="#"></img>
+                            </div>
+                            <div class="track-serch-block-item-info-track-names">
+                                <div class="info-track-trackName">${data.tracks.items[0].name}</div>
+                                <div class="info-track-artistName">${data.tracks.items[0].artists[0].name}, ${data.tracks.items[0].artists[1].name}</div>
+                            </div>
+                        </div>
+                        <div class="track-serch-block-item-time">${msToS(data.tracks.items[0].duration_ms)}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    `
+    `;
+    homeStroke();
 }

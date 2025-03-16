@@ -24,7 +24,7 @@
 .artist-serch p, .artist-serch h2{
     margin: 0;
 }
-.artist-serch-title{
+.artist-serch-title, .track-serch-title{
     width: 100%;
     padding-bottom: 10px;
     font-size: 27px;
@@ -66,4 +66,40 @@
 }
 .artist-serch-block-text{
     color: #b3b3b3;
+}
+
+.track-serch{
+    width: calc(100% - 450px);
+}
+.track-serch-block-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    border-radius: 6px;
+    padding: 0 10px;
+}
+.track-serch-block-item:hover{
+    background-color: hsla(0, 0%, 100%, .1);
+}
+.track-serch-block-item-info-track{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 17px;
+}
+.info-track-image{
+    border-radius: 4px;
+}
+.track-serch-block-item-info-track-names{
+    color: var(--text-base);
+}
+.info-track-artistName{
+    color: var(--text-subdued);
+}
+.info-track-trackName:hover, .info-track-artistName:hover{
+    color: var(--text-base);
+    text-decoration: underline;
+    cursor: pointer;
 }
