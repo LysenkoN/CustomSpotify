@@ -18,9 +18,9 @@ function searchtml(data){
             <div class="artist-serch">
                 <div class="artist-serch-title">Лучший результат</div>
                 <div class="artist-serch-block">
-                    <img class="artist-serch-block-picture" src="" alt="#">
+                    <img class="artist-serch-block-picture" src="${data.artists.items[0].images[1].url}" alt="#">
                     <div class="artist-serch-block-info">
-                        <h2 class="artist-serch-block-name">Name</h2>
+                        <h2 class="artist-serch-block-name">${data.artists.items[0].name}</h2>
                         <p class="artist-serch-block-text">Исполнитель</p>
                     </div>
                 </div>

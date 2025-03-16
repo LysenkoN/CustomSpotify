@@ -45,7 +45,6 @@
     background-color: hsla(0, 0%, 100%, .1);
 }
 .artist-serch-block img{
-    border: #fff 1px solid;
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -60,6 +59,10 @@
 .artist-serch-block-name{
     color: var(--text-base);
     font-size: 30px;
+}
+.artist-serch-block-name:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 .artist-serch-block-text{
     color: #b3b3b3;
