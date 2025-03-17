@@ -12,8 +12,6 @@ searchInput.addEventListener("change", async ()=>{
     }
 });
 
-const msToS = (ms) => ms / 60000;
-
 function searchtml(data){
     document.querySelector(".secti-el").innerHTML = `
         <div class="search">
@@ -31,22 +29,38 @@ function searchtml(data){
             <div class="track-serch">
                 <div class="track-serch-title">Треки</div>
                 <div class="track-serch-block">
-                    <div class="track-serch-block-item">
-                        <div class="track-serch-block-item-info-track">
-                            <div class="track-serch-block-item-info-track-picture">
-                                <img style="width: 40px; height: 40px;" class="info-track-image" src="${data.tracks.items[0].album.images[2].url}" alt="#"></img>
-                            </div>
-                            <div class="track-serch-block-item-info-track-names">
-                                <div class="info-track-trackName">${data.tracks.items[0].name}</div>
-                                <div class="info-track-artistName">${data.tracks.items[0].artists[0].name}, ${data.tracks.items[0].artists[1].name}</div>
-                            </div>
-                        </div>
-                        <div class="track-serch-block-item-time">${msToS(data.tracks.items[0].duration_ms)}</div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
     `;
     homeStroke();
+    spawnItemTrack(data);
+}
+
+const msToS = (ms) => Math.floor(ms / 1000);
+const sToM = (s) => Math.floor(s / 60);
+const seconds = (min,sec) =>{
+    const resultMin = min * 60;
+    return sec - resultMin;
+}
+
+function spawnItemTrack(data){
+    for(let i = 0; i <= 4; i+=1){
+        const htmlItem = `
+                    <div class="track-serch-block-item">
+                        <div class="track-serch-block-item-info-track">
+                            <div class="track-serch-block-item-info-track-picture">
+                                <img style="width: 40px; height: 40px;" class="info-track-image" src="${data.tracks.items[i].album.images[2].url}" alt="#"></img>
+                            </div>
+                            <div class="track-serch-block-item-info-track-names">
+                                <div class="info-track-trackName">${data.tracks.items[i].name}</div>
+                                <div class="info-track-artistName"></div>
+                            </div>
+                        </div>
+                        <div class="track-serch-block-item-time">${sToM(msToS(data.tracks.items[i].duration_ms))}:${seconds(sToM(msToS(data.tracks.items[i].duration_ms)), msToS(data.tracks.items[i].duration_ms))}</div>
+                    </div>
+        `;
+        document.getElementsByClassName("track-serch-block")[0].innerHTML += htmlItem;
+    }
 }

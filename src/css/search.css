@@ -36,7 +36,7 @@
     justify-content: center;
     gap: 24px;
     width: 100%;
-    min-height: 180px;
+    min-height: 240px;
     border-radius: 10px;
     background-color: #1f1f1f;
     transition: 500ms;
@@ -102,4 +102,7 @@
     color: var(--text-base);
     text-decoration: underline;
     cursor: pointer;
+}
+.track-serch-block-item-time{
+    color: var(--text-subdued);
 }
