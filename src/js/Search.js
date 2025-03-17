@@ -45,8 +45,22 @@ const seconds = (min,sec) =>{
     return sec - resultMin;
 }
 
+function getArtistsTrack(artistsArr) {
+    let result = [];
+    for (let i = 0; i < artistsArr.length; i++) {
+        result.push(artistsArr[i].name);
+    }
+
+    if(result.length !== 1){
+        return result.join(",");
+    }else{
+        return result[0];
+    }
+}
+
+
 function spawnItemTrack(data){
-    for(let i = 0; i <= 4; i+=1){
+    for(let i = 0; i < 4; i+=1){
         const htmlItem = `
                     <div class="track-serch-block-item">
                         <div class="track-serch-block-item-info-track">
@@ -55,7 +69,7 @@ function spawnItemTrack(data){
                             </div>
                             <div class="track-serch-block-item-info-track-names">
                                 <div class="info-track-trackName">${data.tracks.items[i].name}</div>
-                                <div class="info-track-artistName"></div>
+                                <div class="info-track-artistName">${getArtistsTrack(data.tracks.items[i].artists)}</div>
                             </div>
                         </div>
                         <div class="track-serch-block-item-time">${sToM(msToS(data.tracks.items[i].duration_ms))}:${seconds(sToM(msToS(data.tracks.items[i].duration_ms)), msToS(data.tracks.items[i].duration_ms))}</div>

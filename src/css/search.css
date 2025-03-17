@@ -36,7 +36,7 @@
     justify-content: center;
     gap: 24px;
     width: 100%;
-    min-height: 240px;
+    min-height: 200px;
     border-radius: 10px;
     background-color: #1f1f1f;
     transition: 500ms;
