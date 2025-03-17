@@ -6,7 +6,6 @@ searchInput.addEventListener("change", async ()=>{
     try{
         const data = await searchAPI(searchInput.value)
         searchtml(data);
-        console.log(data);
     }catch(error){
         console.error("Ошибка загрузки топ-артистов:", error);
     }
