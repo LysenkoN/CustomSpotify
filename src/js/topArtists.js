@@ -10,7 +10,7 @@ function pageArtists(){
                     <div class="subtitle">Видны только тебе</div>
                 </div>
             </div>
-            <div style="flex-wrap: wrap; width: 100%;" class="profile-top-artists-main">
+            <div style="flex-wrap: wrap; width: 100%; gap:5.5px;" class="profile-top-artists-main">
                 
             </div>
         </div>
@@ -20,7 +20,7 @@ function pageArtists(){
 }
 
 export function openPageArtists(){
-    let elements = document.getElementsByClassName("show-all");
+    const elements = document.getElementsByClassName("show-all");
     for (let i = 0; i < elements.length; i++) {
         elements[i].addEventListener("click", async(e) => {
             pageArtists();

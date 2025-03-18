@@ -1,0 +1,12 @@
+.profile::-webkit-scrollbar {
+    width: 12.5px; /* Ширина всего элемента навигации */
+}
+.profile::-webkit-scrollbar-track {
+    background-color: transparent; /* Цвет дорожки */
+}
+.profile::-webkit-scrollbar-thumb {
+    background-color: var(--text-subdued); /* Цвет бегунка */
+}
+.profile::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-base); /* Цвет бегунка */
+}

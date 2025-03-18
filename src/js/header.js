@@ -21,19 +21,15 @@ function unvisible(value){
     value.style.display = "none";
     clearTimeout(id);
 }
-profileAvatar.addEventListener("mouseover",()=>{visible(itemHelpProfile)});
-profileAvatar.addEventListener("mouseout",()=>{unvisible(itemHelpProfile)});
 
-
-homeBtn.addEventListener("mouseover",()=>{visible(itemHelpHome)});
-homeBtn.addEventListener("mouseout",()=>{unvisible(itemHelpHome)});
-
-logo.addEventListener("mouseover",()=>{visible(itemHelpLogo)});
-logo.addEventListener("mouseout",()=>{unvisible(itemHelpLogo)});
-
-search.addEventListener("mouseover",()=>{visible(itemHelpSearch)});
-search.addEventListener("mouseout",()=>{unvisible(itemHelpSearch)});
-
+function addHelp(item, value){
+    item.addEventListener("mouseover",()=>{visible(value)});
+    item.addEventListener("mouseout",()=>{unvisible(value)});
+}
+addHelp(profileAvatar,itemHelpProfile);
+addHelp(homeBtn,itemHelpHome);
+addHelp(logo,itemHelpLogo);
+addHelp(search,itemHelpSearch);
 
 // Записываем данные user
 export function userInformation(){

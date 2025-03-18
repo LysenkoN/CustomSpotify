@@ -1,16 +1,18 @@
 import {profileAvatar} from "./header.js";
 import {homeStroke} from "./buttonHome.js";
-import {fetchTopArtists} from './api_user_top.js'
-import { openPageArtists } from "./artists.js";
+import {fetchTopArtists} from './api_user_top.js';
+import { openPageArtists } from "./topArtists.js";
+import { getHrefArtist } from "./api_artists.js";
 
 export async function displayTopArtists() {
     try {
-        const data = JSON.stringify(await fetchTopArtists());
+        const data = await fetchTopArtists();
         if (!data?.items || data.items.length === 0) {
             document.querySelector(".profile-top-artists").remove();
         }
         else {
             topArtists(data.items);
+            getHrefArtist();
         }
     } catch (error) {
         console.error("Ошибка загрузки топ-артистов:", error);
@@ -42,7 +44,7 @@ export function avatarProfile(){
 export function topArtists(arr){
     for(let i = 0; arr.length > i; i+=1){
         const itemProfile = `
-        <div class="profile-top-artists-main-item">
+        <div style="width:200px;" class="profile-top-artists-main-item">
             <div class="profile-top-artists-main-item-img">
                 <img style="width: 173px; height: 173px; border-radius: 50%;" src="${arr[i].images[0].url}" alt="">
             </div>
@@ -87,11 +89,12 @@ function pageProfile(){
         </div>
     </div>    
 `;
+openPageArtists();
 }
 
 profileAvatar.addEventListener("click" ,()=>{
+    displayTopArtists();
     pageProfile();
     avatarProfile();
-    displayTopArtists();
     homeStroke();
 });
