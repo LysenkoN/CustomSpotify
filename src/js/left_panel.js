@@ -1,13 +1,13 @@
 import { getUserPlayLists } from "./api_playlist";
 import { getFollowedArtists } from "./api_users";
-import { drawPlaylist } from "./create_playlist";
+import { drawPlaylist, drawArtistPage } from "./create_playlist";
 
 let mediatekaSearch = document.getElementById("mediateka_search");
 let mediatekaInput = document.getElementById("mediateka_input");
 let mediatekaInputBlock = document.getElementById("mediateka-input-container");
 let listenToBlock = document.getElementsByClassName("search_listenedto")[0];
 let mediaAdd = document.getElementById("media_add");
-let mediaAddBlock = document.getElementsByClassName("media-add-block")[0];
+export let mediaAddBlock = document.getElementsByClassName("media-add-block")[0];
 let body = document.getElementsByTagName('body')[0];
 let playlistBlock = document.getElementById('playlist-block');
 let followedArtistsBlock = document.getElementById('followed-artists-block');
@@ -25,7 +25,7 @@ mediatekaSearch.addEventListener("click",()=> {
 })
 
 mediaAdd.addEventListener("click", (e)=> {
-    e.stopPropagation();
+    e.stopImmediatePropagation();
     if (mediaAddBlock.classList.contains('active')) {
         mediaAddBlock.classList.remove('active');
     } 
@@ -82,7 +82,7 @@ export async function drawFollowedArtists() {
     result.artists.items.forEach(item => {
         let img = item.images ? `<img class="left-block-followed-artists-img" src="${item.images[0].url}">` : '<div class="icon1"></div>';
         followedArtistsBlock.innerHTML += 
-            `<div class="followed-artists-list" data-followed_id="${item.id}">
+            `<div id="followed_artist_list" class="followed-artists-list" data-followed_id="${item.id}">
                 ${img}
                 <div class="followed-artists-contanier">
                     <div class="name_artist">${item.name}</div>
@@ -97,7 +97,7 @@ export async function drawFollowedArtists() {
             let target = e.target;
             let parent = findAncestor(target, 'followed-artists-list');
             if (parent) {
-                drawPlaylist(parent.getAttribute("data-followed_id"));
+                drawArtistPage(parent.getAttribute("data-followed_id"));
             }
         })
     }

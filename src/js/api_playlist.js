@@ -36,6 +36,23 @@ export async function addTrackToPlayList(playlist_id, uri) {
     }
 }
 
+export async function deleteTrackFromPlayList(playlist, uri) {
+    const accessToken = getAccessToken();
+    const params = new URLSearchParams();
+
+    const result = await fetch(`https://api.spotify.com/v1/playlists/${playlist.id}/tracks`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${accessToken}` },
+        body: JSON.stringify({'tracks': [{'uri': uri}]})
+    });
+    if (result.ok) {
+        return result.json();
+    } else if (result.status === 401) {
+        await refreshToken();
+        return await deleteTrackFromPlayList(playlist, uri);
+    }
+}
+
 export async function getUserPlayLists(limit) {
     const accessToken = getAccessToken();
     const params = new URLSearchParams();

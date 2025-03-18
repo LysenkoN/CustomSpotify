@@ -28,9 +28,18 @@
     flex-direction: column;
     /* width: calc(var(--left-sidebar-width)* 1px); */
     z-index: var(--left-sidebar-grid-area-z-index);
-    
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: 5px;
+    scroll-behavior: smooth;    
 }
-
+.main_left_panel_block::-webkit-scrollbar {
+    background-color: transparent;
+}
+.main_left_panel_block::-webkit-scrollbar-thumb {
+    background-color: rgb(41, 40, 40) ;
+    border-radius: 5px;
+}
 .my_mediateka {
     /* margin-left: 20px;
     display: flex;
@@ -265,4 +274,11 @@
 .left-block-playlists-img {
     width: 48px;
     height: 48px;
+}
+.followed-artists-list:hover {
+    background-color: rgb(35, 38, 38);
+    border-radius: 5px;
+}
+.followed-artists-list:hover .name_artist {
+    color:  #1ed760;
 }
