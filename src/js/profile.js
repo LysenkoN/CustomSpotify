@@ -11,7 +11,7 @@ export async function displayTopArtists() {
             document.querySelector(".profile-top-artists").remove();
         }
         else {
-            topArtists(data.items);
+            topArtists(data.items, ".profile-top-artists-main");
             getHrefArtist();
         }
     } catch (error) {
@@ -41,7 +41,7 @@ export function avatarProfile(){
 }
 
 // Функция для заполнения полей для топ артистов
-export function topArtists(arr){
+export function topArtists(arr, item){
     for(let i = 0; arr.length > i; i+=1){
         const itemProfile = `
         <div style="width:200px;" class="profile-top-artists-main-item">
@@ -54,7 +54,7 @@ export function topArtists(arr){
             </div>
         </div>
         `
-        document.querySelector(".profile-top-artists-main").innerHTML += itemProfile;
+        document.querySelector(item).innerHTML += itemProfile;
     }
 }
 

@@ -1,7 +1,7 @@
 .search{
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 30px;
     border-radius: 10px;
     width: 150vh;
     height: 85vh;
@@ -25,10 +25,12 @@
     margin: 0;
 }
 .artist-serch-title, .track-serch-title{
-    width: 100%;
     padding-bottom: 10px;
     font-size: 27px;
     color: var(--text-base);
+}
+.track-serch-title:hover{
+    text-decoration: underline;
 }
 .artist-serch-block{
     display: flex;

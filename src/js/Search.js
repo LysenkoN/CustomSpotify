@@ -1,11 +1,13 @@
 import {searchAPI} from "./api_search.js";
 import {homeStroke} from "./buttonHome.js";
+import {topArtists} from "./profile.js";
 
 const searchInput = document.getElementsByClassName("header-search-input")[0];
 searchInput.addEventListener("change", async ()=>{
     try{
         const data = await searchAPI(searchInput.value)
         searchtml(data);
+        console.log(data);
     }catch(error){
         console.error("Ошибка загрузки топ-артистов:", error);
     }
@@ -31,10 +33,15 @@ function searchtml(data){
                 </div>
             </div>
         </div>
+        <div class="search-artists">
+            <div class="search-artists-title">Исполнители</div>
+            <div class="search-artists-main"></div>
+        </div>
     </div>
     `;
     homeStroke();
     spawnItemTrack(data);
+    topArtists(data.artists.items, ".search-artists-main");
 }
 
 const msToS = (ms) => Math.floor(ms / 1000);

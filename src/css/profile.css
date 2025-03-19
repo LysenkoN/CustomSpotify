@@ -59,7 +59,7 @@
     color: var(--text-subdued);
 }
 
-.profile-top-artists{
+.profile-top-artists, .search-artists{
     display: flex;
     flex-direction: column;
     gap: 7px;
@@ -76,11 +76,11 @@
     gap: 5px;
     cursor: pointer;
 }
-.profile-top-artists-head-title .title{
+.profile-top-artists-head-title .title, .search-artists-title{
     color: var(--text-base);
     font-size: 1.7rem;
 }
-.profile-top-artists-head-title .title:hover{
+.profile-top-artists-head-title .title:hover, .search-artists-title:hover{
     text-decoration: underline;
 }
 .profile-top-artists-head-title .subtitle{
@@ -94,7 +94,7 @@
 .show-all:hover{
     text-decoration: underline;
 }
-.profile-top-artists-main{
+.profile-top-artists-main, .search-artists-main{
     display: flex;
     align-items: center;
     overflow: hidden;
