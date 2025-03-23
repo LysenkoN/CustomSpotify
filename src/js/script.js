@@ -1,15 +1,12 @@
 import { clientId, redirect_uri, scopes, accessTokenVar, refreshTokenVar } from './settings';
 import { getAccessTokenAPI } from './api_access';
-import { getAlbum, getNewReleases } from './api_album';
-import { createPlayList } from './api_playlist';
-import {fetchTopArtists} from './api_user_top.js';
 import { fetchProfile } from './api_users';
 import "./header.js";
 import "./profile.js";
 import {userInformation} from "./header.js";
-import {avatarProfile,displayTopArtists} from "./profile.js";
 import {openPageArtists} from "./topArtists.js";
-import {drawMyPlayLists, drawFollowedArtists} from "./left_panel.js"
+import {drawMyPlayLists, drawFollowedArtists, drawSavedTracks} from "./left_panel.js";
+import {getUsersSavedTracks} from "./api_tracks.js";
 
 const params = new URLSearchParams(window.location.search);
 let code = params.get("code");
@@ -31,8 +28,12 @@ if (!code) {
     userInformation();
     openPageArtists();
 
+    drawSavedTracks();
     drawMyPlayLists();
     drawFollowedArtists();
+    let savedTracks = await getUsersSavedTracks(10, 5);
+    console.log(savedTracks)
+
     // populateUI(profile);
 
     // Test API integrations are below

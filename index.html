@@ -12,11 +12,13 @@
         <script type="module" src="./src/js/left_panel.js"></script>
         <script type="module" src="./src/js/create_playlist.js"></script>
         <script type="module" src="./src/js/topArtists.js"></script>
-        <script type="module" src="./src/js/api_artists.js"></script>
         <script type="module" src ="./src/js/Search.js"></script>
     </head>
     <body>
          <!-- <h1>Display your Spotify profile data</h1>  -->
+         <audio controls autoplay src="https://open.spotify.com/track/0GjEhVFGZW8afUYGChu3Rr" style="display: none;">
+            <source id="player" type="audio/mpeg">
+          </audio>
 
         <section style="display: none;" id="profile"> 
        <h2 >Logged in as <span id="displayName"></span></h2>
@@ -154,30 +156,10 @@
     </section>
 
     <footer>
-        <div class="artist-info">
-            <img src="" alt="">
-        </div>
-        <div class="player-buttons">
-            <button id="mix">
-                <img src="./src/img/Player_Button_Mix.svg" alt="">
-            </button>
-            <button id="previous">
-                <img src="./src/img/Player_Button_Previous.svg" alt="" width="14px" height="16px">
-            </button>
-            <button id="play">
-                <img src="./src/img/Player_Button_Play.svg" alt="" width="33px" height="34px">
-            </button>
-            <button id="next">
-                <img src="./src/img/Player_Button_Next.svg" alt="" width="14px" height="16px">
-            </button>
-            <button id="repeat">
-                <img src="./src/img/Player_Button_Repeat.svg" alt="" width="18px" height="15px">
-            </button>
-        </div>
-        <div class="player-bar">
-
-        </div>
+          <div id="embed-iframe"></div>
     </footer>
+    <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+    <script src="./src/js/player.js"></script>
 </body>
 
 </html>

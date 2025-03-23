@@ -47,6 +47,10 @@ body.addEventListener("click", (e)=> {
     }
 })
 
+export async function drawSavedTracks() {
+    
+}
+
 export async function drawMyPlayLists() {
     const result = await getUserPlayLists(50);
     console.log(result);

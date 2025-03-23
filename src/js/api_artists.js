@@ -1,9 +1,6 @@
-
 import { clientId, getAccessToken, redirect_uri } from './settings';
-import { getAccessToken } from './settings';
 import { refreshToken } from './api_access';
 import { fetchTopArtists } from "./api_user_top.js";
-const data = await fetchTopArtists();
 
 
 export async function getArtist(artistId) {
@@ -21,7 +18,8 @@ export async function getArtist(artistId) {
 }
 
 
-export function getHrefArtist(){
+export async function getHrefArtist(){
+    const data = await fetchTopArtists();
     document.querySelectorAll(".profile-top-artists-main-item").forEach(item => {
         item.addEventListener("click", async (event) => {
             const index = [...document.querySelectorAll(".profile-top-artists-main-item")].indexOf(event.currentTarget);
@@ -51,5 +49,19 @@ export async function fetchArtists(hrefArtists) {
         return await fetchTopArtists();
     } else {
         throw new Error(`Failed to fetch top artists: ${result.status}`);
+    }
+}
+
+export async function getArtistPopularTracks(artistId) {
+    const accessToken = getAccessToken();
+
+    const result = await fetch(`https://api.spotify.com/v1/artists/${artistId}/top-tracks`, {
+        method: "GET", headers: { Authorization: `Bearer ${accessToken}` }
+    });
+    if (result.ok) {
+        return result.json();
+    } else if (result.status === 401) {
+        await refreshToken();
+        return await getArtistPopularTracks(artistId);
     }
 }

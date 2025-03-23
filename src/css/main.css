@@ -1,3 +1,19 @@
+@media (max-width: 799px) {
+    .block-sing {
+        width: calc(100% - 250px);
+    }
+}
+@media (min-width: 800px) {
+    .block-sing {
+        width: calc(100% - 300px);
+    }
+}
+@media (min-width: 1200px) {
+    .block-sing {
+        width: calc(100% - 410px);
+    }
+}
+
 
 .block-sing{
     display: flex;
@@ -5,8 +21,8 @@
     align-items: center;
    .secti-el{
         border-radius: 10px;
-        width: 150vh;
-        height: 85vh;
+        width: 100%;
+        height: calc(100vh - 64px - 110px);
         background-color: rgb(41, 40, 40);
         .class-elemts{
             flex-wrap: wrap;

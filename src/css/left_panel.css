@@ -21,7 +21,7 @@
     /* width: 25vw; */
     background-color: #121212;
     color: grey;
-    height: calc(100vh - 30px - 110px);
+    height: calc(100vh - 64px - 110px);
     border-radius: 10px;
     cursor: pointer;  
     position: relative; 

@@ -1,7 +1,9 @@
 import { addTrackToPlayList, getUserPlayLists, createPlayList, deleteTrackFromPlayList, getPlayListItems, getPlayList } from "./api_playlist";
 import { searchAPI } from "./api_search";
 import { getArtist } from "./api_artists";
+import { getArtistPopularTracks } from "./api_artists";
 import {mediaAddBlock, drawMyPlayLists} from "./left_panel";
+import {playTrack} from './player.js';
 const drawPlayListBtn = document.getElementsByClassName("media-add-contanier")[0];
 let user_profile = JSON.parse(localStorage.getItem('profile'));
 let playlist_id = null;
@@ -42,7 +44,10 @@ async function drawPlaylistTracks(playlist) {
         num += 1;
         tracksHTML += `
         <div class="drawtracksplaylist_contanier">
-                <div class="number_icon">${num}</div>
+                <div class="number_icon">${num}</div><div class="play_icon"><svg class='play_icon_svg' data-src=${track.track.uri} fill="white" xmlns="http://www.w3.org/2000/svg" 
+	 width="20px" height="20px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+<path d="M8,43.7V8.3c0-1,1.3-1.7,2.2-0.9l33.2,17.3c0.8,0.6,0.8,1.9,0,2.5L10.2,44.7C9.3,45.4,8,44.8,8,43.7z"/>
+</svg></div>
                 <!--This is a comment. Comments are not displayed in the browser-->
                 <div class="name_line name-line-block">
                     <div class="icon-artist2"><img src=${track.track.album.images[2].url}></div>
@@ -78,11 +83,24 @@ async function drawPlaylistTracks(playlist) {
             deleteTrack(playlist, track_uri)
         })
     })
+    Array.from(document.getElementsByClassName('play_icon_svg')).forEach(elm => {
+        elm.addEventListener('click', ()=> {
+            initPlaylist(elm);
+        })
+    })
+}
+
+function initPlaylist(elm) {
+    let allSrcs = [];
+    Array.from(document.getElementsByClassName('play_icon_svg')).forEach(e => {allSrcs.push(e.getAttribute('data-src'))});
+    let src = elm.getAttribute('data-src');
+    console.log(allSrcs)
+    playTrack(allSrcs, allSrcs.indexOf(src))
 }
 
 
 async function drawTmpPlayList(playlist, user_profile){
-
+    console.log(playlist)
     document.getElementsByClassName("secti-el")[0].innerHTML = `
         <div class="playlist_block">
             <div class="playlist-data">
@@ -194,7 +212,11 @@ function parseTime(strTime) {
 function getDuration(duration_ms){
     console.log(duration_ms)
     let seconds = Math.floor(duration_ms / 1000);
-    return `${Math.floor(seconds / 60)}:${seconds % 60}`
+    let secondsToHTML = seconds % 60;
+    if (secondsToHTML < 10) {
+        secondsToHTML = `0${secondsToHTML}`
+    }
+    return `${Math.floor(seconds / 60)}:${secondsToHTML}`
 
 
 }
@@ -383,23 +405,56 @@ drawPlayListBtn.addEventListener("click", (e)=> {
 
 export async function drawArtistPage(artistId) {
     let artist_data = await getArtist(artistId);
-    console.log(artist_data);
+    let artist_popular_track_list = await getArtistPopularTracks(artistId);
+    let tracksHTML = '';
+    let ind = 0;
+    artist_popular_track_list.tracks.forEach(track => {
+        console.log(track);
+        ind ++;
+        tracksHTML += `
+        <div class="track_block">
+        <span class="track_num">${ind}</span><span class="track_play"><svg  class='play_icon_svg' data-src=${track.uri} fill="white" xmlns="http://www.w3.org/2000/svg" 
+	 width="20px" height="20px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+<path d="M8,43.7V8.3c0-1,1.3-1.7,2.2-0.9l33.2,17.3c0.8,0.6,0.8,1.9,0,2.5L10.2,44.7C9.3,45.4,8,44.8,8,43.7z"/>
+</svg></span>
+        <div class="track_img"><img src="${track.album.images[2].url}"></div>
+        <span class="track_name">${track.name}</span>
+        <span class="popularity">${track.popularity}</span>
+        <span class="track_duration">${getDuration(track.duration_ms)}</span>
+        </div>
+        `;
+    })
     document.getElementsByClassName("secti-el")[0].innerHTML = `
         <div class="artist_block">
             <div class="artist-data">
 
                 <div class="artist-data-block">
-                    <span>
-                        <svg class="verify_icon" data-encore-id="verifiedBadge" role="img" aria-hidden="false" class="e-9640-icon encore-announcement-set b0NcxAbHvRbqgs2S8QDg" viewBox="0 0 24 24" style="--encore-icon-fill: var(--background-base, #ffffff); --encore-icon-height: var(--encore-graphic-size-informative-base); --encore-icon-width: var(--encore-graphic-size-informative-base); position: relative; background-image: linear-gradient(var(--text-base), var(--text-base)); background-size: 50% 50%; background-position: center center; background-repeat: no-repeat;"><title>Verified account</title><path d="M10.814.5a1.658 1.658 0 0 1 2.372 0l2.512 2.572 3.595-.043a1.658 1.658 0 0 1 1.678 1.678l-.043 3.595 2.572 2.512c.667.65.667 1.722 0 2.372l-2.572 2.512.043 3.595a1.658 1.658 0 0 1-1.678 1.678l-3.595-.043-2.512 2.572a1.658 1.658 0 0 1-2.372 0l-2.512-2.572-3.595.043a1.658 1.658 0 0 1-1.678-1.678l.043-3.595L.5 13.186a1.658 1.658 0 0 1 0-2.372l2.572-2.512-.043-3.595a1.658 1.658 0 0 1 1.678-1.678l3.595.043L10.814.5zm6.584 9.12a1 1 0 0 0-1.414-1.413l-6.011 6.01-1.894-1.893a1 1 0 0 0-1.414 1.414l3.308 3.308 7.425-7.425z"></path></svg>
-                    </span>
-                    <span class="verify_user"> Подтвержденный пользователь </span>
-                    <div class="artist-data-picture"><img class="artist_image" src="${artist_data.images[2].url}"></div>
-                    <span class="artist-name">${artist_data.name}</span>  
-                       
-                    <span>${artist_data.followers.total} followers</span>          
+                    <div class="verify-block">
+                        <span>
+                            <svg class="verify_icon" data-encore-id="verifiedBadge" role="img" aria-hidden="false" class="e-9640-icon encore-announcement-set b0NcxAbHvRbqgs2S8QDg" viewBox="0 0 24 24" style="--encore-icon-fill: var(--background-base, #ffffff); --encore-icon-height: var(--encore-graphic-size-informative-base); --encore-icon-width: var(--encore-graphic-size-informative-base); position: relative; background-image: linear-gradient(var(--text-base), var(--text-base)); background-size: 50% 50%; background-position: center center; background-repeat: no-repeat;"><title>Verified account</title><path d="M10.814.5a1.658 1.658 0 0 1 2.372 0l2.512 2.572 3.595-.043a1.658 1.658 0 0 1 1.678 1.678l-.043 3.595 2.572 2.512c.667.65.667 1.722 0 2.372l-2.572 2.512.043 3.595a1.658 1.658 0 0 1-1.678 1.678l-3.595-.043-2.512 2.572a1.658 1.658 0 0 1-2.372 0l-2.512-2.572-3.595.043a1.658 1.658 0 0 1-1.678-1.678l.043-3.595L.5 13.186a1.658 1.658 0 0 1 0-2.372l2.572-2.512-.043-3.595a1.658 1.658 0 0 1 1.678-1.678l3.595.043L10.814.5zm6.584 9.12a1 1 0 0 0-1.414-1.413l-6.011 6.01-1.894-1.893a1 1 0 0 0-1.414 1.414l3.308 3.308 7.425-7.425z"></path></svg>
+                        </span>
+                        <span class="verify_user"> Подтвержденный исполнитель </span>
+                    </div>
+                    <div class="artist-image-name-block">
+                        <div class="artist-data-picture"><img class="artist_image" src="${artist_data.images[2].url}"></div>
+                        <span class="artist-name">${artist_data.name}</span>  
+                     </div>  
+                    <span class="followers">${artist_data.followers.total} followers</span>          
                 </div> 
+            </div>
+            <div class="play_this_playlist_block">
+                <div class="play_this_playlist_button"></div>
+            </div>
+            <span class="popular_tracks">Популярные треки</span>
+            <div class="popular_tracks_list_block">
+                ${tracksHTML}
             </div>
         </div>
     `
+    Array.from(document.getElementsByClassName('play_icon_svg')).forEach(elm => {
+        elm.addEventListener('click', ()=> {
+            initPlaylist(elm);
+        })
+    })
     
     }
