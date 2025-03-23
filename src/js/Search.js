@@ -3,7 +3,9 @@ import {homeStroke} from "./buttonHome.js";
 import {topArtists} from "./profile.js";
 
 const searchInput = document.getElementsByClassName("header-search-input")[0];
-searchInput.addEventListener("change", async ()=>{
+const searchInputButton = document.getElementsByClassName("svg-search")[0];
+
+async function getSearch() {
     try{
         const data = await searchAPI(searchInput.value)
         searchtml(data);
@@ -11,7 +13,10 @@ searchInput.addEventListener("change", async ()=>{
     }catch(error){
         console.error("Ошибка загрузки топ-артистов:", error);
     }
-});
+}
+
+searchInput.addEventListener("input", getSearch);
+searchInputButton.addEventListener("click", getSearch);
 
 function searchtml(data){
     document.querySelector(".secti-el").innerHTML = `
