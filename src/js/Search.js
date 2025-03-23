@@ -42,6 +42,7 @@ function searchtml(data){
     homeStroke();
     spawnItemTrack(data);
     topArtists(data.artists.items, ".search-artists-main");
+    document.getElementsByClassName("search-artists-title")[0].addEventListener("click", ()=>{openPageArtists(data)});
 }
 
 const msToS = (ms) => Math.floor(ms / 1000);
@@ -83,4 +84,14 @@ function spawnItemTrack(data){
         `;
         document.getElementsByClassName("track-serch-block")[0].innerHTML += htmlItem;
     }
+}
+
+function openPageArtists(data){
+    document.querySelector(".secti-el").innerHTML = `
+    <div class="search-artists">
+        <div class="search-artists-title">Исполнители</div>
+        <div style="flex-wrap: wrap; width: 100%; gap:5.5px;" class="search-artists-main"></div>
+    </div>
+`;
+topArtists(data.artists.items, ".search-artists-main");
 }
