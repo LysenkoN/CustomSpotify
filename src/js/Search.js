@@ -1,15 +1,22 @@
 import {searchAPI} from "./api_search.js";
 import {homeStroke} from "./buttonHome.js";
+import {topArtists} from "./profile.js";
 
 const searchInput = document.getElementsByClassName("header-search-input")[0];
-searchInput.addEventListener("change", async ()=>{
+const searchInputButton = document.getElementsByClassName("svg-search")[0];
+
+async function getSearch() {
     try{
         const data = await searchAPI(searchInput.value)
         searchtml(data);
+        console.log(data);
     }catch(error){
         console.error("Ошибка загрузки топ-артистов:", error);
     }
-});
+}
+
+searchInput.addEventListener("input", getSearch);
+searchInputButton.addEventListener("click", getSearch);
 
 function searchtml(data){
     document.querySelector(".secti-el").innerHTML = `
@@ -31,10 +38,17 @@ function searchtml(data){
                 </div>
             </div>
         </div>
+        <div class="search-artists">
+            <div class="search-artists-title">Исполнители</div>
+            <div class="search-artists-main"></div>
+        </div>
     </div>
     `;
     homeStroke();
-    spawnItemTrack(data);
+    spawnItemTrack(data, 4);
+    document.getElementsByClassName("track-serch-title")[0].addEventListener("click", ()=>{openPageTracks(data, data.tracks.items.length)});
+    topArtists(data.artists.items, ".search-artists-main");
+    document.getElementsByClassName("search-artists-title")[0].addEventListener("click", ()=>{openPageArtists(data)});
 }
 
 const msToS = (ms) => Math.floor(ms / 1000);
@@ -58,8 +72,8 @@ function getArtistsTrack(artistsArr) {
 }
 
 
-function spawnItemTrack(data){
-    for(let i = 0; i < 4; i+=1){
+function spawnItemTrack(data, count){
+    for(let i = 0; i < count; i+=1){
         const htmlItem = `
                     <div class="track-serch-block-item">
                         <div class="track-serch-block-item-info-track">
@@ -76,4 +90,23 @@ function spawnItemTrack(data){
         `;
         document.getElementsByClassName("track-serch-block")[0].innerHTML += htmlItem;
     }
+}
+
+function openPageArtists(data){
+    document.querySelector(".secti-el").innerHTML = `
+    <div class="search-artists">
+        <div class="search-artists-title">Исполнители</div>
+        <div style="flex-wrap: wrap; width: 100%; gap:5.5px;" class="search-artists-main"></div>
+    </div>
+`;
+topArtists(data.artists.items, ".search-artists-main");
+}
+
+function openPageTracks(data, count){
+    document.querySelector(".secti-el").innerHTML = `
+            <div style="width:100%;" class="track-serch">
+                <div class="track-serch-block"></div>
+            </div>
+    `;
+    spawnItemTrack(data, count)
 }

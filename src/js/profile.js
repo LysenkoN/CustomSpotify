@@ -11,7 +11,7 @@ export async function displayTopArtists() {
             document.querySelector(".profile-top-artists").remove();
         }
         else {
-            topArtists(data.items);
+            topArtists(data.items, ".profile-top-artists-main");
             getHrefArtist();
         }
     } catch (error) {
@@ -41,22 +41,27 @@ export function avatarProfile(){
 }
 
 // Функция для заполнения полей для топ артистов
-export function topArtists(arr){
-    for(let i = 0; arr.length > i; i+=1){
+export function topArtists(arr, item) {
+    for (let i = 0; i < arr.length; i++) {
+        const artist = arr[i];
+
+        const imageUrl = artist.images && artist.images.length > 0 ? artist.images[0].url : './src/img/human.png';
+
         const itemProfile = `
-        <div style="width:200px;" class="profile-top-artists-main-item">
-            <div class="profile-top-artists-main-item-img">
-                <img style="width: 173px; height: 173px; border-radius: 50%;" src="${arr[i].images[0].url}" alt="">
+            <div style="width:200px;" class="profile-top-artists-main-item">
+                <div class="profile-top-artists-main-item-img">
+                    <img style="width: 173px; height: 173px; border-radius: 50%;" src="${imageUrl}" alt="">
+                </div>
+                <div class="profile-top-artists-main-item-info">
+                    <div class="profile-top-artists-main-item-info-name">${artist.name}</div>
+                    <div class="profile-top-artists-main-item-info-subtitle">Исполнитель</div>
+                </div>
             </div>
-            <div class="profile-top-artists-main-item-info">
-                <div class="profile-top-artists-main-item-info-name">${arr[i].name}</div>
-                <div class="profile-top-artists-main-item-info-subtitle">Исполнитель</div>
-            </div>
-        </div>
-        `
-        document.querySelector(".profile-top-artists-main").innerHTML += itemProfile;
+        `;
+        document.querySelector(item).innerHTML += itemProfile;
     }
 }
+
 
 //Заменяем елементы на страницу профиля
 function pageProfile(){
