@@ -73,11 +73,17 @@
 .track-serch{
     width: calc(100% - 450px);
 }
+.track-serch-block{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
 .track-serch-block-item{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 95%;
     height: 50px;
     border-radius: 6px;
     padding: 0 10px;

@@ -45,7 +45,8 @@ function searchtml(data){
     </div>
     `;
     homeStroke();
-    spawnItemTrack(data);
+    spawnItemTrack(data, 4);
+    document.getElementsByClassName("track-serch-title")[0].addEventListener("click", ()=>{openPageTracks(data, data.tracks.items.length)});
     topArtists(data.artists.items, ".search-artists-main");
     document.getElementsByClassName("search-artists-title")[0].addEventListener("click", ()=>{openPageArtists(data)});
 }
@@ -71,8 +72,8 @@ function getArtistsTrack(artistsArr) {
 }
 
 
-function spawnItemTrack(data){
-    for(let i = 0; i < 4; i+=1){
+function spawnItemTrack(data, count){
+    for(let i = 0; i < count; i+=1){
         const htmlItem = `
                     <div class="track-serch-block-item">
                         <div class="track-serch-block-item-info-track">
@@ -99,4 +100,13 @@ function openPageArtists(data){
     </div>
 `;
 topArtists(data.artists.items, ".search-artists-main");
+}
+
+function openPageTracks(data, count){
+    document.querySelector(".secti-el").innerHTML = `
+            <div style="width:100%;" class="track-serch">
+                <div class="track-serch-block"></div>
+            </div>
+    `;
+    spawnItemTrack(data, count)
 }
