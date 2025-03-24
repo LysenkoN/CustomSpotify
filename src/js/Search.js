@@ -5,6 +5,7 @@ import {topArtists} from "./profile.js";
 const searchInput = document.getElementsByClassName("header-search-input")[0];
 const searchInputButton = document.getElementsByClassName("svg-search")[0];
 
+// Получаем ответ на запос по поиску
 async function getSearch() {
     try{
         const data = await searchAPI(searchInput.value)
@@ -18,6 +19,8 @@ async function getSearch() {
 searchInput.addEventListener("input", getSearch);
 searchInputButton.addEventListener("click", getSearch);
 
+
+// Выводим на страницу результат поиска
 function searchtml(data){
     document.querySelector(".secti-el").innerHTML = `
         <div class="search">
@@ -45,12 +48,13 @@ function searchtml(data){
     </div>
     `;
     homeStroke();
-    spawnItemTrack(data, 4);
+    spawnItemTrack(data, 4); // Показываем на странице первые 4 трека 
     document.getElementsByClassName("track-serch-title")[0].addEventListener("click", ()=>{openPageTracks(data, data.tracks.items.length)});
-    topArtists(data.artists.items, ".search-artists-main");
+    topArtists(data.artists.items, ".search-artists-main"); // Показываем на странице ряд артистов
     document.getElementsByClassName("search-artists-title")[0].addEventListener("click", ()=>{openPageArtists(data)});
 }
 
+// Перевод милисекунд в минуты и секунды
 const msToS = (ms) => Math.floor(ms / 1000);
 const sToM = (s) => Math.floor(s / 60);
 const seconds = (min,sec) =>{
@@ -58,6 +62,7 @@ const seconds = (min,sec) =>{
     return sec - resultMin;
 }
 
+// Получаем всех артистов треков
 function getArtistsTrack(artistsArr) {
     let result = [];
     for (let i = 0; i < artistsArr.length; i++) {
@@ -71,7 +76,7 @@ function getArtistsTrack(artistsArr) {
     }
 }
 
-
+// Добовляем на страницу треки
 function spawnItemTrack(data, count){
     for(let i = 0; i < count; i+=1){
         const htmlItem = `
@@ -92,6 +97,7 @@ function spawnItemTrack(data, count){
     }
 }
 
+// Возможность открыть полную страницу с исполнителями
 function openPageArtists(data){
     document.querySelector(".secti-el").innerHTML = `
     <div class="search-artists">
@@ -102,6 +108,7 @@ function openPageArtists(data){
 topArtists(data.artists.items, ".search-artists-main");
 }
 
+// Возможность открыть полную страницу с треками
 function openPageTracks(data, count){
     document.querySelector(".secti-el").innerHTML = `
             <div style="width:100%;" class="track-serch">
