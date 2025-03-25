@@ -17,6 +17,11 @@ async function getSearch() {
 }
 
 searchInput.addEventListener("input", getSearch);
+searchInput.addEventListener("keydown", (event)=>{
+    if(event.key === "Enter"){
+        getSearch();
+    }
+});
 searchInputButton.addEventListener("click", getSearch);
 
 
@@ -115,5 +120,28 @@ function openPageTracks(data, count){
                 <div class="track-serch-block"></div>
             </div>
     `;
-    spawnItemTrack(data, count)
+    spawnItemInPageTracks(data, count);
+}
+
+// Добовляем на страницу треки с небольшими изменениями
+function spawnItemInPageTracks(data, count){
+    for(let i = 0; i < count; i+=1){
+        const htmlItem = `
+                    <div class="track-serch-block-item">
+                        <div class="track-serch-block-item-info-track">
+                            <?xml version="1.0" ?><svg class="button-play" height="18" viewBox="0 0 48 48" width="18" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M-838-2232H562v3600H-838z" fill="none"/><path d="M16 10v28l22-14z"/><path d="M0 0h48v48H0z" fill="none"/></svg>
+                            <p class="counter-tracks">${i+1}</p>
+                            <div class="track-serch-block-item-info-track-picture">
+                                <img style="width: 40px; height: 40px;" class="info-track-image" src="${data.tracks.items[i].album.images[2].url}" alt="#"></img>
+                            </div>
+                            <div class="track-serch-block-item-info-track-names">
+                                <div class="info-track-trackName">${data.tracks.items[i].name}</div>
+                                <div class="info-track-artistName">${getArtistsTrack(data.tracks.items[i].artists)}</div>
+                            </div>
+                        </div>
+                        <div class="track-serch-block-item-time">${sToM(msToS(data.tracks.items[i].duration_ms))}:${seconds(sToM(msToS(data.tracks.items[i].duration_ms)), msToS(data.tracks.items[i].duration_ms))}</div>
+                    </div>
+        `;
+        document.getElementsByClassName("track-serch-block")[0].innerHTML += htmlItem;
+    }
 }
