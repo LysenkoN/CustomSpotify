@@ -17,6 +17,11 @@ async function getSearch() {
 }
 
 searchInput.addEventListener("input", getSearch);
+searchInput.addEventListener("keydown", (event)=>{
+    if(event.key === "Enter"){
+        getSearch();
+    }
+});
 searchInputButton.addEventListener("click", getSearch);
 
 
