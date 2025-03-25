@@ -115,5 +115,27 @@ function openPageTracks(data, count){
                 <div class="track-serch-block"></div>
             </div>
     `;
-    spawnItemTrack(data, count)
+    spawnItemInPageTracks(data, count);
+}
+
+// Добовляем на страницу треки с небольшими изменениями
+function spawnItemInPageTracks(data, count){
+    for(let i = 0; i < count; i+=1){
+        const htmlItem = `
+                    <div class="track-serch-block-item">
+                        <div class="track-serch-block-item-info-track">
+                            <p class="counter-tracks">${i+1}</p>
+                            <div class="track-serch-block-item-info-track-picture">
+                                <img style="width: 40px; height: 40px;" class="info-track-image" src="${data.tracks.items[i].album.images[2].url}" alt="#"></img>
+                            </div>
+                            <div class="track-serch-block-item-info-track-names">
+                                <div class="info-track-trackName">${data.tracks.items[i].name}</div>
+                                <div class="info-track-artistName">${getArtistsTrack(data.tracks.items[i].artists)}</div>
+                            </div>
+                        </div>
+                        <div class="track-serch-block-item-time">${sToM(msToS(data.tracks.items[i].duration_ms))}:${seconds(sToM(msToS(data.tracks.items[i].duration_ms)), msToS(data.tracks.items[i].duration_ms))}</div>
+                    </div>
+        `;
+        document.getElementsByClassName("track-serch-block")[0].innerHTML += htmlItem;
+    }
 }

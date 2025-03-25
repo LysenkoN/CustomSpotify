@@ -111,6 +111,6 @@
     text-decoration: underline;
     cursor: pointer;
 }
-.track-serch-block-item-time{
+.track-serch-block-item-time, .counter-tracks{
     color: var(--text-subdued);
 }
