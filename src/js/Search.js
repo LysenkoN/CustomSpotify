@@ -129,6 +129,7 @@ function spawnItemInPageTracks(data, count){
         const htmlItem = `
                     <div class="track-serch-block-item">
                         <div class="track-serch-block-item-info-track">
+                            <?xml version="1.0" ?><svg class="button-play" height="18" viewBox="0 0 48 48" width="18" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M-838-2232H562v3600H-838z" fill="none"/><path d="M16 10v28l22-14z"/><path d="M0 0h48v48H0z" fill="none"/></svg>
                             <p class="counter-tracks">${i+1}</p>
                             <div class="track-serch-block-item-info-track-picture">
                                 <img style="width: 40px; height: 40px;" class="info-track-image" src="${data.tracks.items[i].album.images[2].url}" alt="#"></img>
