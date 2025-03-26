@@ -1,0 +1,125 @@
+.search{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 10px;
+    width: 150vh;
+    height: 85vh;
+    padding: 15px 20px;
+    background-color: rgb(41, 40, 40);
+}
+.artist-track{
+    display: flex;
+    align-items: start;
+    gap: 15px;
+    width: 100%;
+    min-height: 280px;
+}
+.artist-serch{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 450px;
+}
+.artist-serch p, .artist-serch h2{
+    margin: 0;
+}
+.artist-serch-title, .track-serch-title{
+    padding-bottom: 10px;
+    font-size: 27px;
+    color: var(--text-base);
+}
+.track-serch-title:hover{
+    text-decoration: underline;
+}
+.artist-serch-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    min-height: 200px;
+    border-radius: 10px;
+    background-color: #1f1f1f;
+    transition: 500ms;
+}
+.artist-serch-block:hover{
+    background-color: hsla(0, 0%, 100%, .1);
+}
+.artist-serch-block img{
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-left: 26px;
+}
+.artist-serch-block-info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 26px;
+}
+.artist-serch-block-name{
+    color: var(--text-base);
+    font-size: 30px;
+}
+.artist-serch-block-name:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.artist-serch-block-text{
+    color: #b3b3b3;
+}
+
+.track-serch{
+    width: calc(100% - 450px);
+}
+.track-serch-block{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.track-serch-block-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    height: 50px;
+    border-radius: 6px;
+    padding: 0 10px;
+}
+.track-serch-block-item:hover{
+    background-color: hsla(0, 0%, 100%, .1);
+}
+.track-serch-block-item-info-track{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 17px;
+}
+.info-track-image{
+    border-radius: 4px;
+}
+.track-serch-block-item-info-track-names{
+    color: var(--text-base);
+}
+.info-track-artistName{
+    color: var(--text-subdued);
+}
+.info-track-trackName:hover, .info-track-artistName:hover{
+    color: var(--text-base);
+    text-decoration: underline;
+    cursor: pointer;
+}
+.track-serch-block-item-time, .counter-tracks{
+    color: var(--text-subdued);
+}
+.button-play{
+    display: none;
+}
+.track-serch-block-item:hover .button-play{
+    display: block;
+}
+.track-serch-block-item:hover .counter-tracks{
+    display: none;
+}

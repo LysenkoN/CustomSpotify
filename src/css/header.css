@@ -2,12 +2,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 9px 2px;
+    padding: 7px 2px;
     padding-right: 10px;
 }
-.header-logo img{
+.header-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    left: 25px;
+    min-width: 90px;
+    cursor: pointer;
+}
+.header-logo img{
     width: 33px;
     height: 33px;
     cursor: pointer;
@@ -86,6 +92,7 @@
 }
 .help-home, .help-profile, .help-header-logo-img, .help-svg-search{
     position: absolute;
+    z-index: 3;
     top: 67px;
     display: none;
     align-items: center;
