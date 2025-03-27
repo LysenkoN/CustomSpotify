@@ -1,6 +1,7 @@
 import {searchAPI} from "./api_search.js";
 import {homeStroke} from "./buttonHome.js";
 import {topArtists} from "./profile.js";
+import {playTrack} from "./player.js";
 
 const searchInput = document.getElementsByClassName("header-search-input")[0];
 const searchInputButton = document.getElementsByClassName("svg-search")[0];
@@ -144,4 +145,24 @@ function spawnItemInPageTracks(data, count){
         `;
         document.getElementsByClassName("track-serch-block")[0].innerHTML += htmlItem;
     }
+
+
+    const buttonPlay = document.querySelectorAll(".track-serch-block-item");
+    for(let i = 0; buttonPlay.length > i; i += 1){
+        buttonPlay[i].addEventListener("click", (ev)=>{
+            playSearchTrack(data, count)
+            console.log(ev);
+            console.log(data.tracks.items.indexOf(ev.target));
+        });
+    }
+}
+
+function playSearchTrack(data, count){
+    const arr = [];
+
+    for(let i = 0; i < count; i+=1){
+        arr.push(data.tracks.items[i].uri);
+    }
+
+    playTrack(arr, 0);
 }
