@@ -65,3 +65,17 @@ export async function getArtistPopularTracks(artistId) {
         return await getArtistPopularTracks(artistId);
     }
 }
+export async function unfollowArtists(artistId) {
+    const accessToken = getAccessToken();
+
+    const result = await fetch(`https://api.spotify.com/v1/me/following?type=artist&ids=${artistId}`, {
+        method: "DELETE", headers: { Authorization: `Bearer ${accessToken}` },
+        body: JSON.stringify({'ids': [artistId]})
+    });
+    if (result.ok) {
+        return true;
+    } else if (result.status === 401) {
+        await refreshToken();
+        return await unfollowArtists(artistId);
+    }
+}

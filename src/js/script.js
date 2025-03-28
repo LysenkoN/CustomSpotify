@@ -23,7 +23,6 @@ if (!code) {
         localStorage.setItem(refreshTokenVar, result.refresh_token)
     }
     const profile = await fetchProfile();
-    console.log(profile);
     localStorage.setItem('profile', JSON.stringify(profile));
     userInformation();
     openPageArtists();
@@ -32,19 +31,6 @@ if (!code) {
     drawMyPlayLists();
     drawFollowedArtists();
     let savedTracks = await getUsersSavedTracks(10, 5);
-    console.log(savedTracks)
-
-    // populateUI(profile);
-
-    // Test API integrations are below
-    // const test_releases = await getNewReleases(20, 0);
-    // console.log(test_releases);
-    // const test_album_id = test_releases.albums.items[0].id;
-    // const test_album = await getAlbum(test_album_id);
-    // console.log(test_album);
-    // const test_track_id = test_album.tracks.items[0].id;
-    // const new_playlist = await createPlayList('test_playlist', '', true);
-    // console.log(new_playlist);
 }
 
 

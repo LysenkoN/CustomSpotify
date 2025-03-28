@@ -1,7 +1,7 @@
 import { addTrackToPlayList, getUserPlayLists, createPlayList, deleteTrackFromPlayList, getPlayListItems, getPlayList } from "./api_playlist";
 import { searchAPI } from "./api_search";
 import { getArtist } from "./api_artists";
-import { getArtistPopularTracks } from "./api_artists";
+import { getArtistPopularTracks, unfollowArtists } from "./api_artists";
 import {mediaAddBlock, drawMyPlayLists} from "./left_panel";
 import {playTrack} from './player.js';
 const drawPlayListBtn = document.getElementsByClassName("media-add-contanier")[0];
@@ -24,7 +24,6 @@ async function getNewPlaylistName() {
 }
 
 async function deleteTrack(playlist, track_uri) {
-    console.log(playlist)
     await deleteTrackFromPlayList(playlist, track_uri);
     playlist = await getPlayList(playlist.id);
     drawPlaylistTracks(playlist);
@@ -36,7 +35,6 @@ async function drawPlaylistTracks(playlist) {
     let tracksHTML = '';
     let num = 0;
     playlist.tracks.items.forEach(track => {
-        console.log(track)
         let artist_names = [];
         track.track.artists.forEach(a => {
             artist_names.push(a.name)
@@ -75,11 +73,10 @@ async function drawPlaylistTracks(playlist) {
         `
     })
     document.getElementById('tracks_artists_album_block').innerHTML = tracksHTML;
-    // Here must be listener on the different events with tracks
+
     Array.from(document.getElementsByClassName("delete_track_from_list")).forEach(elm => {
         elm.addEventListener("click", ()=> {
             let track_uri = elm.getAttribute("data-track_uri");
-            console.log(track_uri)
             deleteTrack(playlist, track_uri)
         })
     })
@@ -94,13 +91,11 @@ function initPlaylist(elm) {
     let allSrcs = [];
     Array.from(document.getElementsByClassName('play_icon_svg')).forEach(e => {allSrcs.push(e.getAttribute('data-src'))});
     let src = elm.getAttribute('data-src');
-    console.log(allSrcs)
     playTrack(allSrcs, allSrcs.indexOf(src))
 }
 
 
 async function drawTmpPlayList(playlist, user_profile){
-    console.log(playlist)
     document.getElementsByClassName("secti-el")[0].innerHTML = `
         <div class="playlist_block">
             <div class="playlist-data">
@@ -138,33 +133,6 @@ async function drawTmpPlayList(playlist, user_profile){
     drawPlaylistTracks(playlist);
 }
 
-
-// async function drawEmptyPlayList(playlist, user_profile){
-//     document.getElementsByClassName("secti-el")[0].innerHTML = `
-//         <div id="search_playlist_block" class="playlist_block">
-//             <div class="playlist-data">
-//                 <div id="pictureBlock" class="playlist-data-picture"></div>
-//                 <div class="playlist-data-block">
-//                     <span> Плейлист </span>
-//                     <span class="my-playlist">${playlist.name}</span>
-//                     <div class="profile-img-username">
-//                         <img src=${user_profile.images[1].url}>
-//                         <span>${user_profile.display_name}</span>
-//                     </div>        
-//                 </div> 
-//             </div>
-//         </div>
-//         <div id="playlist_tracks">
-//         </div>
-//         <div class="search-items-block">
-//             <span>Давай добавим что-нибудь в твой плейлист</span>
-//             <input placeholder="Поиск треков" id="search_tracks">
-//             <div id="search-artist-list-block"></div>
-//             <div id="search-track-list-block"></div>
-//             <div id="search-album-list-block"></div>
-//         </div>
-//     `;  
-// }
 
 function timePlurality (num, timeType) {
     let remaind = num % 10;
@@ -210,7 +178,6 @@ function parseTime(strTime) {
 
 }
 function getDuration(duration_ms){
-    console.log(duration_ms)
     let seconds = Math.floor(duration_ms / 1000);
     let secondsToHTML = seconds % 60;
     if (secondsToHTML < 10) {
@@ -220,71 +187,6 @@ function getDuration(duration_ms){
 
 
 }
-// function drawNonEmptyPlayList(playlist, user_profile) {
-//     let tracksHTML = '';
-//     let d= '';
-//     let num = 0;
-//     playlist.tracks.items.forEach(track => {
-//         console.log(track)
-//         let artist_names = [];
-//         track.track.artists.forEach(a => {
-//             artist_names.push(a.name)
-//         })
-//         num += 1;
-//         tracksHTML += `
-//         <div class="drawtracksplaylist_contanier">
-//                 <div class="number_icon">${num}</div>
-//                 <!--This is a comment. Comments are not displayed in the browser-->
-//                 <div class="name_line name-line-block">
-//                     <div class="icon-artist2"><img src=${track.track.album.images[2].url}></div>
-//                     <div class="track_artist_block">
-//                         <div class="name_track2">${track.track.name}</div>
-//                         <div class="name_artist2">${artist_names.join(', ')}</div>
-//                     </div>          
-//                 </div>
-//                 <!--This is a comment. Comments are not displayed in the browser-->
-//                   <span class="album_track_name album_line">${track.track.album.name}</span>
-//                   <!--This is a comment. Comments are not displayed in the browser-->
-//                   <span class="date_added_track date_line">${parseTime(track.added_at)}</span>
-//                   <!--This is a comment. Comments are not displayed in the browser-->
-//                   <span class="duration_time_track duration_line">${getDuration(track.duration_ms)}</span>  
-                
-//         </div> 
-//         `
-//     })
-//     document.getElementsByClassName("secti-el")[0].innerHTML = `
-//         <div class="playlist_block">
-//             <div class="playlist-data">
-//                 <div id="pictureBlock" class="playlist-data-picture"></div>
-//                 <div class="playlist-data-block">
-//                     <span> Плейлист </span>
-//                     <span class="my-playlist">${playlist.name}</span>
-//                     <div class="profile-img-username">
-//                         <img src=${user_profile.images[1].url}>
-//                         <span>${user_profile.display_name}</span>
-//                     </div>        
-//                 </div> 
-//             </div>
-//         </div>
-//         <div id="playlist_tracks">
-//         </div>
-//         <div class="play_this_playlist_block">
-//             <div class="play_this_playlist_button"></div>
-//         </div>
-//         <br>
-//         <div class="header_tracklists_line">
-//             <span class="number_icon">#</span><!----><span class="name_line">Название</span><!----><span class="album_line">Альбом</span><!----><span class="date_line">Дата добавления</span><!----><span class="duration_line">◷</span>
-//         </div>
-//         <hr>
-//         <div class="tracks_artists_album_block">
-     
-//                ${tracksHTML}
-        
-    
-//         </div>
-        
-//         `
-// }
 
 function searchLogic(playlist) {
     let search_tracks = document.getElementById('search_tracks');
@@ -298,22 +200,8 @@ function searchLogic(playlist) {
         albums_block.innerHTML = '';
         if (text) {
             const result = await searchAPI(text);
-            // result.artists.items.forEach(item => {
-            //     if (item.name.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
-            //         artists_block.innerHTML += 
-            //             `<div class="drawlist">
-            //                 <div class="icon-artist"><img src=${item.images[2].url}></div>
-            //                 <div class="drawplaylist_contanier">
-            //                     <div class="name_artist1">${item.name}</div>
-            //                     <div class="name_track1">Исполнитель</div> 
-            //                 </div>
-            //             </div>`
-                    
-            //     }
-            // })
             result.tracks.items.forEach(item => {
                 if (item.name.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
-                    console.log('track', item)
                     tracks_block.innerHTML += 
                         `<div class="drawlist">
                             <div class="icon-artist"><img src=${item.album.images[2].url}></div>
@@ -326,22 +214,9 @@ function searchLogic(playlist) {
                         </div>`
                 }
             })
-            // result.albums.items.forEach(item => {
-            //     if (item.name.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
-            //         console.log('album', item)
-            //         tracks_block.innerHTML += 
-            //             `<div class="drawlist">
-            //                 <div class="icon-artist"><img src=${item.images[2].url}></div>
-            //                 <div class="drawplaylist_contanier">
-            //                     <div class="name_artist1">${item.name}</div>
-            //                     <div class="name_track1">Исполнитель</div> 
-            //                 </div>
-            //             </div>`
-            //     }
-            // })
+            
         }
         let elements = document.getElementsByClassName('add_track');
-        console.log(elements)
 
         for (let i = 0; i < elements.length; i++) {
             elements[i].addEventListener("click", async(e) => {
@@ -367,35 +242,12 @@ export async function drawPlaylist(id){
         playlist_id = playlist.id;
         drawMyPlayLists();
     }
-    console.log(playlist)
 
     await drawTmpPlayList(playlist, user_profile);
     searchLogic(playlist);
 
-    // if (playlist.tracks.items.length) {
-    //     drawNonEmptyPlayList(playlist, user_profile)
-    // }
-    // else {
-    //     await drawEmptyPlayList(playlist, user_profile);
-    //     searchLogic();
-    // }  
-    // refreshPage();
+   
 }
-// async function refreshPlaylistTracks() {
-//     let items = await getPlayListItems(playlist_id);
-//     console.log(items)
-//     let playlist_tracks = document.getElementById('playlist_tracks');
-//     playlist_tracks.innerHTML = '';
-//     result.items.forEach(item => {
-//         if (item.name.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
-//             console.log('track', item)
-//             playlist_tracks.innerHTML += `
-
-//             `
-                
-//         }
-//     })
-// }
 
 drawPlayListBtn.addEventListener("click", (e)=> {
     e.stopImmediatePropagation();
@@ -409,7 +261,6 @@ export async function drawArtistPage(artistId) {
     let tracksHTML = '';
     let ind = 0;
     artist_popular_track_list.tracks.forEach(track => {
-        console.log(track);
         ind ++;
         tracksHTML += `
         <div class="track_block">
@@ -443,8 +294,9 @@ export async function drawArtistPage(artistId) {
                 </div> 
             </div>
             <div class="play_this_playlist_block">
-                <div class="play_this_playlist_button"></div>
-            </div>
+            <div class="play_this_playlist_button"></div>
+            <div id="unfollowed_button" class="unfollowed_this_artist">Отписаться</div>
+        </div>
             <span class="popular_tracks">Популярные треки</span>
             <div class="popular_tracks_list_block">
                 ${tracksHTML}
@@ -457,4 +309,9 @@ export async function drawArtistPage(artistId) {
         })
     })
     
-    }
+    let unfollowedBtn = document.getElementById("unfollowed_button")
+    unfollowedBtn.addEventListener( "click", async(e)=>{
+        e.stopImmediatePropagation();
+        await unfollowArtists(artistId);
+    })
+}

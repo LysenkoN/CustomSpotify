@@ -53,7 +53,6 @@ export async function drawSavedTracks() {
 
 export async function drawMyPlayLists() {
     const result = await getUserPlayLists(50);
-    console.log(result);
     playlistBlock.innerHTML = '';
     result.items.forEach(item => {
         let img = item.images ? `<img class="left-block-playlists-img" src="${item.images[0].url}">` : '<div class="icon"></div>';
@@ -81,7 +80,6 @@ export async function drawMyPlayLists() {
 
 export async function drawFollowedArtists() {
     const result = await getFollowedArtists(null, 10);
-    console.log(result);
     followedArtistsBlock.innerHTML = '';
     result.artists.items.forEach(item => {
         let img = item.images ? `<img class="left-block-followed-artists-img" src="${item.images[0].url}">` : '<div class="icon1"></div>';
