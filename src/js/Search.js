@@ -67,6 +67,14 @@ const seconds = (min,sec) =>{
     const resultMin = min * 60;
     return sec - resultMin;
 }
+// Функция для оброботки секунд которые меньше 10 (добовляем в начало нолик )) )
+function secondThatLessThanTen(min, sec){
+    if(seconds(min, sec) >= 10){
+        return seconds(min, sec);
+    }else{
+        return `0${seconds(min, sec)}`
+    }
+}
 
 // Получаем всех артистов треков
 function getArtistsTrack(artistsArr) {
@@ -96,7 +104,7 @@ function spawnItemTrack(data, count){
                                 <div class="info-track-artistName">${getArtistsTrack(data.tracks.items[i].artists)}</div>
                             </div>
                         </div>
-                        <div class="track-serch-block-item-time">${sToM(msToS(data.tracks.items[i].duration_ms))}:${seconds(sToM(msToS(data.tracks.items[i].duration_ms)), msToS(data.tracks.items[i].duration_ms))}</div>
+                        <div class="track-serch-block-item-time">${sToM(msToS(data.tracks.items[i].duration_ms))}:${secondThatLessThanTen(sToM(msToS(data.tracks.items[i].duration_ms)), msToS(data.tracks.items[i].duration_ms))}</div>
                     </div>
         `;
         document.getElementsByClassName("track-serch-block")[0].innerHTML += htmlItem;
@@ -140,7 +148,7 @@ function spawnItemInPageTracks(data, count){
                                 <div class="info-track-artistName">${getArtistsTrack(data.tracks.items[i].artists)}</div>
                             </div>
                         </div>
-                        <div class="track-serch-block-item-time">${sToM(msToS(data.tracks.items[i].duration_ms))}:${seconds(sToM(msToS(data.tracks.items[i].duration_ms)), msToS(data.tracks.items[i].duration_ms))}</div>
+                        <div class="track-serch-block-item-time">${sToM(msToS(data.tracks.items[i].duration_ms))}:${secondThatLessThanTen(sToM(msToS(data.tracks.items[i].duration_ms)), msToS(data.tracks.items[i].duration_ms))}</div>
                     </div>
         `;
         document.getElementsByClassName("track-serch-block")[0].innerHTML += htmlItem;
