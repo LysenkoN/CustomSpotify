@@ -1,5 +1,6 @@
 import {displayTopArtists} from "./profile.js";
 
+// Делаем внешний вид страницы с полным списком топ артистов профиля
 function pageArtists(){
     document.querySelector(".secti-el").innerHTML = `
     <div class="profile">
@@ -19,6 +20,7 @@ function pageArtists(){
     displayTopArtists();
 }
 
+// Выводим нашу страницу по нажать на кнопку 'Показать все'
 export function openPageArtists(){
     const elements = document.getElementsByClassName("show-all");
     for (let i = 0; i < elements.length; i++) {
