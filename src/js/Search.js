@@ -2,6 +2,7 @@ import {searchAPI} from "./api_search.js";
 import {homeStroke} from "./buttonHome.js";
 import {topArtists} from "./profile.js";
 import {playTrack} from "./player.js";
+import {getHrefArtistToSearch} from "./api_artists.js";
 
 const searchInput = document.getElementsByClassName("header-search-input")[0];
 const searchInputButton = document.getElementsByClassName("svg-search")[0];
@@ -11,7 +12,7 @@ async function getSearch() {
     try{
         const data = await searchAPI(searchInput.value)
         searchtml(data);
-        console.log(data);
+        getHrefArtistToSearch(data.artists);
     }catch(error){
         console.error("Ошибка загрузки топ-артистов:", error);
     }
@@ -94,7 +95,7 @@ function getArtistsTrack(artistsArr) {
 function spawnItemTrack(data, count){
     for(let i = 0; i < count; i+=1){
         const htmlItem = `
-                    <div class="track-serch-block-item">
+                    <div data-track-id="${i}" class="track-serch-block-item">
                         <div class="track-serch-block-item-info-track">
                             <div class="track-serch-block-item-info-track-picture">
                                 <img style="width: 40px; height: 40px;" class="info-track-image" src="${data.tracks.items[i].album.images[2].url}" alt="#"></img>
@@ -109,6 +110,8 @@ function spawnItemTrack(data, count){
         `;
         document.getElementsByClassName("track-serch-block")[0].innerHTML += htmlItem;
     }
+
+    getItemsToPlaySearchTrack(data, count);
 }
 
 // Возможность открыть полную страницу с исполнителями
@@ -155,14 +158,11 @@ function spawnItemInPageTracks(data, count){
     }
 
 
-    const buttonPlay = document.querySelectorAll(".track-serch-block-item");
-    for(let i = 0; buttonPlay.length > i; i += 1){
-        buttonPlay[i].addEventListener("click", (ev)=>{
-            playSearchTrack(data, count, ev.target.getAttribute("data-track-id"));
-        });
-    }
+    getItemsToPlaySearchTrack(data, count);
 }
 
+
+//функции для проигревания треков
 function playSearchTrack(data, count, id){
     const arr = [];
 
@@ -171,4 +171,12 @@ function playSearchTrack(data, count, id){
     }
 
     playTrack(arr, id);
+}
+function getItemsToPlaySearchTrack(data, count){
+    const buttonPlay = document.querySelectorAll(".track-serch-block-item");
+    for(let i = 0; buttonPlay.length > i; i += 1){
+        buttonPlay[i].addEventListener("click", (ev)=>{
+            playSearchTrack(data, count, ev.target.getAttribute("data-track-id"));
+        });
+    }
 }
