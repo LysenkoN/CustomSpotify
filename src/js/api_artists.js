@@ -37,6 +37,24 @@ export async function getHrefArtist(){
     })
 }
 
+export async function getHrefArtistToSearch(item){
+    const data = item;
+    document.querySelectorAll(".profile-top-artists-main-item").forEach(item => {
+        item.addEventListener("click", async (event) => {
+            const index = [...document.querySelectorAll(".profile-top-artists-main-item")].indexOf(event.currentTarget);
+            
+            if (data.items[index]) {
+                try{
+                    const art = await fetchArtists(data.items[index].href);
+                    drawArtistPage(art.id);
+                }catch(error){
+                    console.error(`Ошибка: ${error}`);
+                }
+            }
+        });
+    })
+}
+
 export async function fetchArtists(hrefArtists) {
     let accessToken = getAccessToken();
     const result = await fetch(`${hrefArtists}`, {

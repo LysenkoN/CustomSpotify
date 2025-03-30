@@ -2,6 +2,7 @@ import {searchAPI} from "./api_search.js";
 import {homeStroke} from "./buttonHome.js";
 import {topArtists} from "./profile.js";
 import {playTrack} from "./player.js";
+import {getHrefArtistToSearch} from "./api_artists.js";
 
 const searchInput = document.getElementsByClassName("header-search-input")[0];
 const searchInputButton = document.getElementsByClassName("svg-search")[0];
@@ -11,7 +12,7 @@ async function getSearch() {
     try{
         const data = await searchAPI(searchInput.value)
         searchtml(data);
-        console.log(data);
+        getHrefArtistToSearch(data.artists);
     }catch(error){
         console.error("Ошибка загрузки топ-артистов:", error);
     }
