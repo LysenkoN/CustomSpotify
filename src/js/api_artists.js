@@ -1,6 +1,7 @@
 import { clientId, getAccessToken, redirect_uri } from './settings';
 import { refreshToken } from './api_access';
 import { fetchTopArtists } from "./api_user_top.js";
+import {drawArtistPage} from "./create_playlist.js";
 
 
 export async function getArtist(artistId) {
@@ -26,7 +27,8 @@ export async function getHrefArtist(){
             
             if (data.items[index]) {
                 try{
-                    console.log(await fetchArtists(data.items[index].href));
+                    const art = await fetchArtists(data.items[index].href);
+                    drawArtistPage(art.id);
                 }catch(error){
                     console.error(`Ошибка: ${error}`);
                 }
