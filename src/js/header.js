@@ -50,10 +50,24 @@ export function userInformation(){
 
 //Делаем по нажатию на кнопку home открытие главной странице
  function pageHome(){
-    // document.querySelector(".secti-el").innerHTML =
+    document.querySelector(".secti-el").innerHTML =`
+                <div class="high-div">
+                    <div class="class-elemts">
+                        <div class="element-bunny"> <!--! Block-playlist -->
+                            <div class="img-input-class">
+                                <img class="picture-track-high-div" src="./src/img/Spotify_Primary_Logo_RGB_White.png" alt="picture">
+                            </div>
+                            <strong>
+                                <p class="text-track-high-div">Улюблені пісні</p>
+                            </strong>
+                            <img class="button-player-bunny" src="./src/img/main/player-button-green-black.png" alt="">
+                        </div>
+                    </div>
+                </div>
+    `;
 
  }
 homeBtn.addEventListener("click", ()=>{
     pageHome();
-    // homeFill();
+    homeFill();
 });
