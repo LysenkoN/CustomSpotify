@@ -455,7 +455,8 @@ hr {
 .play_icon {
     display: none;
 }
-.unfollowed_this_artist {
+.unfollowed_this_artist,
+.followed_this_artist {
     color: white;
     width: 110px;
     height: 25px;
@@ -465,7 +466,8 @@ hr {
     font-weight: 600;
     padding-top: 5px;
 }
-.unfollowed_this_artist:hover  {
+.unfollowed_this_artist:hover,
+.followed_this_artist:hover  {
     scale: 1.1 ;  
     cursor: pointer;  
 }

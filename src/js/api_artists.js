@@ -99,3 +99,17 @@ export async function unfollowArtists(artistId) {
         return await unfollowArtists(artistId);
     }
 }
+export async function followArtists(artistId) {
+    const accessToken = getAccessToken();
+
+    const result = await fetch(`https://api.spotify.com/v1/me/following?type=artist&ids=${artistId}`, {
+        method: "PUT", headers: { Authorization: `Bearer ${accessToken}` },
+        body: JSON.stringify({'ids': [artistId]})
+    });
+    if (result.ok) {
+        return true;
+    } else if (result.status === 401) {
+        await refreshToken();
+        return await followArtists(artistId);
+    }
+}

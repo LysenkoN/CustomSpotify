@@ -100,7 +100,7 @@ export async function drawFollowedArtists() {
             let target = e.target;
             let parent = findAncestor(target, 'followed-artists-list');
             if (parent) {
-                drawArtistPage(parent.getAttribute("data-followed_id"));
+                drawArtistPage(parent.getAttribute("data-followed_id"), true);
                 homeStroke();
             }
         })

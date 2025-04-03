@@ -1,7 +1,7 @@
 import { addTrackToPlayList, getUserPlayLists, createPlayList, deleteTrackFromPlayList, getPlayListItems, getPlayList } from "./api_playlist";
 import { searchAPI } from "./api_search";
 import { getArtist } from "./api_artists";
-import { getArtistPopularTracks, unfollowArtists } from "./api_artists";
+import { getArtistPopularTracks, unfollowArtists, followArtists } from "./api_artists";
 import {mediaAddBlock, drawMyPlayLists} from "./left_panel";
 import {playTrack} from './player.js';
 const drawPlayListBtn = document.getElementsByClassName("media-add-contanier")[0];
@@ -255,7 +255,11 @@ drawPlayListBtn.addEventListener("click", (e)=> {
     mediaAddBlock.classList.remove('active');
 })
 
-export async function drawArtistPage(artistId) {
+export async function drawArtistPage(artistId, unfollow = false) {
+    let btntext = "Подписаться";
+    if (unfollow) {
+        btntext = "Отписаться";
+    }
     let artist_data = await getArtist(artistId);
     let artist_popular_track_list = await getArtistPopularTracks(artistId);
     let tracksHTML = '';
@@ -295,7 +299,7 @@ export async function drawArtistPage(artistId) {
             </div>
             <div class="play_this_playlist_block">
             <div class="play_this_playlist_button"></div>
-            <div id="unfollowed_button" class="unfollowed_this_artist">Отписаться</div>
+            <div id="unfollowed_button" class="unfollowed_this_artist">${btntext}</div>
         </div>
             <span class="popular_tracks">Популярные треки</span>
             <div class="popular_tracks_list_block">
@@ -312,6 +316,11 @@ export async function drawArtistPage(artistId) {
     let unfollowedBtn = document.getElementById("unfollowed_button")
     unfollowedBtn.addEventListener( "click", async(e)=>{
         e.stopImmediatePropagation();
-        await unfollowArtists(artistId);
+        if (unfollow) {
+            await unfollowArtists(artistId);
+        } else {
+            await followArtists(artistId);
+        }
+        
     })
 }
