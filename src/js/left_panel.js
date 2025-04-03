@@ -1,6 +1,7 @@
 import { getUserPlayLists } from "./api_playlist";
 import { getFollowedArtists } from "./api_users";
 import { drawPlaylist, drawArtistPage } from "./create_playlist";
+import {homeStroke} from "./buttonHome.js";
 
 let mediatekaSearch = document.getElementById("mediateka_search");
 let mediatekaInput = document.getElementById("mediateka_input");
@@ -100,6 +101,7 @@ export async function drawFollowedArtists() {
             let parent = findAncestor(target, 'followed-artists-list');
             if (parent) {
                 drawArtistPage(parent.getAttribute("data-followed_id"));
+                homeStroke();
             }
         })
     }
